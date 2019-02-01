@@ -8,14 +8,15 @@ export class GetDataService {
 
   constructor() { }
 
-  generateMock() {
-    let parsed_json = {}
-    for (let i=0;i<7; i++) {
-      let key = '2019-01-2' + i
+  generateMock(s: number) {
+    let parsed_json = []
+    for (let i=0;i<s; i++) {
+      let date = '2019-01-29' + i
       let t = ['intrari', 'presare', 'finisare', 'ambalare', 'predare'][Math.floor(Math.random()*5)]
       let p = ['proppmatt', 'alvaret', 'torsklint', 'listerby', 'burfjord'][Math.floor(Math.random()*5)]
       let m = ['stejar', 'fag'][Math.floor(Math.random()*2)]
       let ac: Action = {
+          data: date,
           tip: t,
           produs: p,
           material: m,
@@ -24,9 +25,13 @@ export class GetDataService {
             schimb_2: 200,
             schimb_3: 300,
           }
-        }        
-      
-      parsed_json = Object.assign({key: ac}, parsed_json)
-    }
+        }
+        
+        parsed_json.push(ac)
+      }
+  // Sort by tip
+  parsed_json.sort((a,b) => {return (a.tip <= b.tip) ? 1 : - 1})    
+
+  return parsed_json
   }
 }

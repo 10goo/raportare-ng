@@ -9,8 +9,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/iris2-week', pathMatch: 'full' },
   { path: 'iris2-week', component: SecIris2WeekComponent },
   { path: 'iris3-week', component: SecIris3WeekComponent },
-  { path: 'iris2-detail/:date', component: SecIris2DetailComponent },
-  { path: 'iris3-detail/:date', component: SecIris3DetailComponent },
+  { path: 'iris2-detail', component: SecIris2DetailComponent },
+  { path: 'iris3-detail', component: SecIris3DetailComponent },
 ];
 
 @NgModule({

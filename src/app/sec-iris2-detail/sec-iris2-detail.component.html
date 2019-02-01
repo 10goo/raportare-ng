@@ -1,3 +1,18 @@
-<p>
-  sec-iris2-detail works!
-</p>
+<h2>Iris 2</h2>
+<table class="u-full-width">
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Produs</th>
+      <th>Material</th>
+      <th>UM</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let ac of actions">
+    <tr>
+      <td>{{ac.tip}}</td>
+      <td>{{ac.produs}}</td>
+      <td>{{ac.material}}</td>
+    </tr>
+  </tbody>
+</table>
