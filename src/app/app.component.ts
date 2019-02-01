@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Action } from './action';
-import { access } from 'fs';
 
 @Component({
   selector: 'app-root',

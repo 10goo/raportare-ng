@@ -1,10 +1,12 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<select name="menu" id="menu" (change)="selected($event.target)">
-  <option value="iris_2">Iris 2</option>
-  <option value="iris_3">Iris 3</option>
+<select name="menu" id="menu">
+  <option routerLink="/iris2-week" value="iris_2">Iris 2</option>
+  <option routerLink="/iris3-week" value="iris_3">Iris 3</option>
 </select>
 <button>Logout</button>
 
-<h1>{{ac.tip}}</h1>
-
 <router-outlet></router-outlet>
+
+<div class="footer">
+  <div>IRIS SERVICE CIUC</div>
+</div>
