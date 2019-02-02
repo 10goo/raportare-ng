@@ -1,3 +1,76 @@
-<p>
-  sec-iris2-week works!
-</p>
+<h2>Iris 2</h2>
+<h5><span class="link"><<</span>  Week 5  <span class="link">>></span></h5>
+<table class="u-full-width">
+  <thead>
+    <tr>
+      <th colspan="4" rowspan="2"> </th>
+      <th colspan="4" routerLink="/iris2-detail" class="link">28-01-2019</th>
+      <th colspan="4" routerLink="/iris2-detail" class="link">29-01-2019</th>
+      <th colspan="4" routerLink="/iris2-detail" class="link">30-01-2019</th>
+      <th colspan="4" routerLink="/iris2-detail" class="link">31-01-2019</th>
+      <th colspan="4" routerLink="/iris2-detail" class="link">01-02-2019</th>
+      <th colspan="4" routerLink="/iris2-detail" class="link">02-02-2019</th>
+      <th colspan="4">TOTAL</th>
+    </tr>
+    <tr>
+      <th>I</th>
+      <th>II</th>
+      <th>III</th>
+      <th>TOTAL</th>
+      <th>I</th>
+      <th>II</th>
+      <th>III</th>
+      <th>TOTAL</th>
+      <th>I</th>
+      <th>II</th>
+      <th>III</th>
+      <th>TOTAL</th>
+      <th>I</th>
+      <th>II</th>
+      <th>III</th>
+      <th>TOTAL</th>
+      <th>I</th>
+      <th>II</th>
+      <th>III</th>
+      <th>TOTAL</th>
+      <th>I</th>
+      <th>II</th>
+      <th>III</th>
+      <th>TOTAL</th>
+      <th>I</th>
+      <th>II</th>
+      <th>III</th>
+      <th>TOTAL</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let ac of actions">
+    <tr>
+      <td>{{ac.tip}}</td>
+      <td>{{ac.produs}}</td>
+      <td>{{ac.um}}</td>
+      <td>{{ac.material}}</td>
+      <td>
+        <input 
+          type="number" 
+          [(ngModel)]="ac.cantitate.schimb_1"
+          (change)="recalculate(ac)"
+        >
+      </td>
+      <td>
+          <input 
+            type="number" 
+            [(ngModel)]="ac.cantitate.schimb_2"
+            (change)="recalculate(ac)"
+          >
+        </td>
+        <td>
+            <input 
+              type="number" 
+              [(ngModel)]="ac.cantitate.schimb_3"
+              (change)="recalculate(ac)"
+            >
+          </td>
+          <td>{{ac.cantitate.schimb_1 + ac.cantitate.schimb_2 + ac.cantitate.schimb_3}}</td>
+    </tr>
+  </tbody>
+</table>

@@ -34,4 +34,8 @@ export class GetDataService {
 
   return parsed_json
   }
+
+  getKeys() {
+    this.generateMock(3)
+  }
 }

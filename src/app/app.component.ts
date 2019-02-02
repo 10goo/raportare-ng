@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Action } from './action';
-import { GetDataService } from './get-data.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +11,12 @@ export class AppComponent {
 
   logOut(): void {
     console.log('logging out...')
+  }
+
+  constructor(private location: Location) { }
+
+  goBack(): void {
+    this.location.back()
   }
 
 }
