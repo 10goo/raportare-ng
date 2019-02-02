@@ -9,6 +9,9 @@ import { GetDataService } from './get-data.service';
 })
 export class AppComponent {
   
-  
+
+  logOut(): void {
+    console.log('logging out...')
+  }
 
 }

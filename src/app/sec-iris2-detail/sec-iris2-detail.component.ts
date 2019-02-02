@@ -8,13 +8,21 @@ import { GetDataService } from '../get-data.service';
 })
 export class SecIris2DetailComponent implements OnInit {
   actions;
+  date;
 
   constructor(ds: GetDataService) {
     // Populate table
     this.actions = ds.generateMock(7);
+    this.date = this.actions[0].data
   }
 
   ngOnInit() {
   }
 
+  saveTable(): void {
+    console.log('saving table...')
+  }
+  recalculate(ac): void {
+    console.log('changed: ' + ac.cantitate.schimb_1)
+  }
 }

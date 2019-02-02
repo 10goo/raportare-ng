@@ -1,5 +1,27 @@
+@import url(./assets/css/normalize.css);
+@import url(./assets/css/skeleton.css);
+
 .container {
     max-width: 100%;
     width: 100%;
     padding: 1em;
+}
+
+tbody>tr:hover {
+    background-color: #eee;
+}
+
+th {
+    text-align: center;
+}
+
+td > input {
+    width: 5em;
+}
+
+/* Turn off arrows in input fields*/
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }

@@ -11,7 +11,7 @@ export class GetDataService {
   generateMock(s: number) {
     let parsed_json = []
     for (let i=0;i<s; i++) {
-      let date = '2019-01-29' + i
+      let date = '29-01-2019'
       let t = ['intrari', 'presare', 'finisare', 'ambalare', 'predare'][Math.floor(Math.random()*5)]
       let p = ['proppmatt', 'alvaret', 'torsklint', 'listerby', 'burfjord'][Math.floor(Math.random()*5)]
       let m = ['stejar', 'fag'][Math.floor(Math.random()*2)]
