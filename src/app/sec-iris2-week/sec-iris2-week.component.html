@@ -1,15 +1,19 @@
 <h2>Iris 2</h2>
-<h5><span class="link"><<</span>  Week 5  <span class="link">>></span></h5>
+<h5>
+  <span class="link" (click)="backOneWeek()"><<</span>
+    Saptamana {{now.isoWeek()}}  
+  <span class="link" (click)="forwardOneWeek()">>></span>
+</h5>
 <table class="u-full-width">
   <thead>
     <tr>
       <th colspan="4" rowspan="2"> </th>
-      <th colspan="4" routerLink="/iris2-detail" class="link">28-01-2019</th>
-      <th colspan="4" routerLink="/iris2-detail" class="link">29-01-2019</th>
-      <th colspan="4" routerLink="/iris2-detail" class="link">30-01-2019</th>
-      <th colspan="4" routerLink="/iris2-detail" class="link">31-01-2019</th>
-      <th colspan="4" routerLink="/iris2-detail" class="link">01-02-2019</th>
-      <th colspan="4" routerLink="/iris2-detail" class="link">02-02-2019</th>
+      <th colspan="4" routerLink="/iris2-detail" class="link">{{weekDays[0]}}</th>
+      <th colspan="4" routerLink="/iris2-detail" class="link">{{weekDays[1]}}</th>
+      <th colspan="4" routerLink="/iris2-detail" class="link">{{weekDays[2]}}</th>
+      <th colspan="4" routerLink="/iris2-detail" class="link">{{weekDays[3]}}</th>
+      <th colspan="4" routerLink="/iris2-detail" class="link">{{weekDays[4]}}</th>
+      <th colspan="4" routerLink="/iris2-detail" class="link">{{weekDays[5]}}</th>
       <th colspan="4">TOTAL</th>
     </tr>
     <tr>
