@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core'
 import { Action } from './action'
 import * as moment from 'moment'
+import { log } from 'util';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GetDataService {
-  date = moment().format('DD-MM-YYYY')
+  private date = moment().format('DD-MM-YYYY')
 
   constructor() { }
 
@@ -57,10 +58,17 @@ export class GetDataService {
   }
 
   getdataForDate(date: string) {
+    /*
+      TODO: Recieve real data instead of mock
+    */
     return this.generateMock(date, 6)
   }
 
   getCurrentTemplate(sectie: string): Array<Action> {
+    /*
+      TODO: Recieve real data instead of mock
+    */
+
     
     return []
   }
