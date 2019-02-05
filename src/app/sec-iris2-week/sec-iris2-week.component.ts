@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import * as moment from 'moment';
+import { Component, OnInit } from '@angular/core'
+import * as moment from 'moment'
+import { GetDataService } from '../get-data.service'
 
 @Component({
   selector: 'app-sec-iris2-week',
@@ -7,12 +8,13 @@ import * as moment from 'moment';
   styleUrls: ['./sec-iris2-week.component.css']
 })
 export class SecIris2WeekComponent implements OnInit {
-  now = moment()
+  now
   weekDays = []
 
-  constructor() { }
+  constructor(private ds: GetDataService) { }
 
   ngOnInit() {
+    this.now = moment(this.ds.getDate(), 'DD-MM-YYYY')
     this.calculateWeekDays()
   }
 

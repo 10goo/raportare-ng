@@ -1,19 +1,31 @@
-import { Injectable } from '@angular/core';
-import { Action } from './action';
+import { Injectable } from '@angular/core'
+import { Action } from './action'
+import * as moment from 'moment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class GetDataService {
+  date = moment().format('DD-MM-YYYY')
 
   constructor() { }
 
   generateMock(date, s: number) {
+    /*
+      Returns a mock array of actions for prototyping
+      
+      Input: 
+        date: date string formatted like 'DD-MM-YYY'
+        s: number of actions in the array
+      Output: Array with elements of type Action
+    */
+    let td = this.getTemplateData();
     let parsed_json = []
     for (let i=0;i<s; i++) {
-      let t = ['intrari', 'presare', 'finisare', 'ambalare', 'predare'][Math.floor(Math.random()*5)]
-      let p = ['proppmatt', 'alvaret', 'torsklint', 'listerby', 'burfjord'][Math.floor(Math.random()*5)]
-      let m = ['stejar', 'fag'][Math.floor(Math.random()*2)]
+      let t = td.tip[Math.floor(Math.random()*td.tip.length)]
+      let p = td.produs[Math.floor(Math.random()*td.produs.length)]
+      let m = td.material[Math.floor(Math.random()*td.material.length)]
+      let u = td.um[Math.floor(Math.random()*td.um.length)]
       let ac: Action = {
           data: date,
           tip: t,
@@ -31,9 +43,17 @@ export class GetDataService {
         parsed_json.push(ac)
       }
   // Sort by tip
-  parsed_json.sort((a,b) => {return (a.tip <= b.tip) ? 1 : - 1})    
+  parsed_json.sort((a,b) => {return (a.tip <= b.tip) ? 1 : - 1})
 
   return parsed_json
+  }
+
+  getDate(): string {
+    return this.date;
+  }
+
+  setDate(date: string): void {
+    this.date = date;
   }
 
   getdataForDate(date: string) {
