@@ -6,7 +6,7 @@ export class Action {
     produs?: string;
     material?: string;
     cantitate: Cantitate;
-    um?: string;
+    um: string;
 
     constructor(
         tip: string = ' ',

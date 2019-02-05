@@ -8,10 +8,9 @@ export class GetDataService {
 
   constructor() { }
 
-  generateMock(s: number) {
+  generateMock(date, s: number) {
     let parsed_json = []
     for (let i=0;i<s; i++) {
-      let date = '29-01-2019'
       let t = ['intrari', 'presare', 'finisare', 'ambalare', 'predare'][Math.floor(Math.random()*5)]
       let p = ['proppmatt', 'alvaret', 'torsklint', 'listerby', 'burfjord'][Math.floor(Math.random()*5)]
       let m = ['stejar', 'fag'][Math.floor(Math.random()*2)]
@@ -20,6 +19,7 @@ export class GetDataService {
           tip: t,
           produs: p,
           material: m,
+          um: 'mc',
           cantitate: {
             schimb_1: 100,
             schimb_2: 200,
@@ -35,7 +35,7 @@ export class GetDataService {
   return parsed_json
   }
 
-  getKeys() {
-    this.generateMock(3)
+  getdataForDate(date: string) {
+    return this.generateMock(date, 6)
   }
 }

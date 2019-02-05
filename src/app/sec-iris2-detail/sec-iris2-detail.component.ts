@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetDataService } from '../get-data.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sec-iris2-detail',
@@ -8,12 +9,13 @@ import { GetDataService } from '../get-data.service';
 })
 export class SecIris2DetailComponent implements OnInit {
   actions;
-  date;
+  date: string;
 
-  constructor(ds: GetDataService) {
+  constructor(private ds: GetDataService, private route: ActivatedRoute) {
+    // Get date/id
+    this.date = route.snapshot.paramMap.get('date')
     // Populate table
-    this.actions = ds.generateMock(7);
-    this.date = this.actions[0].data
+    this.actions = ds.getdataForDate(this.date);
   }
 
   ngOnInit() {

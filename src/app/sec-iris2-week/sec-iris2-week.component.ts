@@ -16,8 +16,6 @@ export class SecIris2WeekComponent implements OnInit {
     this.calculateWeekDays()
   }
 
-
-
   // Calendar functions
 
   calculateWeekDays() {
