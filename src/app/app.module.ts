@@ -8,6 +8,7 @@ import { SecIris2DetailComponent } from './sec-iris2-detail/sec-iris2-detail.com
 import { SecIris2WeekComponent } from './sec-iris2-week/sec-iris2-week.component';
 import { SecIris3WeekComponent } from './sec-iris3-week/sec-iris3-week.component';
 import { SecIris3DetailComponent } from './sec-iris3-detail/sec-iris3-detail.component';
+import { EditTableComponent } from './edit-table/edit-table.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SecIris3DetailComponent } from './sec-iris3-detail/sec-iris3-detail.com
     SecIris2DetailComponent,
     SecIris2WeekComponent,
     SecIris3WeekComponent,
-    SecIris3DetailComponent
+    SecIris3DetailComponent,
+    EditTableComponent
   ],
   imports: [
     BrowserModule,

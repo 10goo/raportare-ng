@@ -1,5 +1,7 @@
 <h2>Iris 2</h2>
 <h5>{{date}}</h5>
+
+<button routerLink="/edit-table/iris2">Editare</button>
 <table class="u-full-width">
   <thead>
     <tr>
@@ -16,8 +18,8 @@
       <th>TOTAL</th>
     </tr>
   </thead>
-  <tbody *ngFor="let ac of actions">
-    <tr>
+  <tbody>
+    <tr *ngFor="let ac of actions">
       <td>{{ac.tip}}</td>
       <td>{{ac.produs}}</td>
       <td>{{ac.um}}</td>

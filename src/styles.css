@@ -11,10 +11,6 @@ tbody>tr:hover {
     background-color: #eee;
 }
 
-th {
-    text-align: center;
-}
-
 .link:hover {
     cursor: pointer;
     color: red;

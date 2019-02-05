@@ -1,17 +1,16 @@
-import { Cantitate } from './cantitate';
+import { AcModel } from './ac-model';
 
-export class Action {
+export class Action extends AcModel{
     data: string;
-    tip?: string;
-    produs?: string;
-    material?: string;
-    cantitate: Cantitate;
-    um: string;
+    cantitate: {
+        schimb_1 : number;
+        schimb_2? : number;
+        schimb_3? : number;
+    }
 
-    constructor(
-        tip: string = ' ',
-        produs: string = ' ',
-        material: string = ' ',
-        cantitate: Cantitate
-    ) { }
+    constructor(data = "", cantitate = {schimb_1 : 0}) {
+        super(); //Must construct parent
+        this.data = data;
+        this.cantitate = cantitate;
+    }
 }

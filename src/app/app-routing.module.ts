@@ -4,6 +4,7 @@ import { SecIris2WeekComponent } from './sec-iris2-week/sec-iris2-week.component
 import { SecIris3WeekComponent } from './sec-iris3-week/sec-iris3-week.component';
 import { SecIris2DetailComponent } from './sec-iris2-detail/sec-iris2-detail.component';
 import { SecIris3DetailComponent } from './sec-iris3-detail/sec-iris3-detail.component';
+import { EditTableComponent } from './edit-table/edit-table.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/iris2-week', pathMatch: 'full' },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'iris3-week', component: SecIris3WeekComponent },
   { path: 'iris2-detail/:data', component: SecIris2DetailComponent },
   { path: 'iris3-detail/:data', component: SecIris3DetailComponent },
+  { path: 'edit-table/:sectie', component: EditTableComponent },
 ];
 
 @NgModule({

@@ -24,7 +24,8 @@ export class GetDataService {
             schimb_1: 100,
             schimb_2: 200,
             schimb_3: 300,
-          }
+          },
+          coeficient: 0
         }
         
         parsed_json.push(ac)
@@ -37,5 +38,20 @@ export class GetDataService {
 
   getdataForDate(date: string) {
     return this.generateMock(date, 6)
+  }
+
+  getCurrentTemplate(sectie: string): Array<Action> {
+    
+    return []
+  }
+
+  getTemplateData() {
+    let res = {
+      tip: ['intrari', 'presare', 'finisare', 'ambalare', 'predare'],
+      produs: ['proppmatt', 'alvaret', 'torsklint', 'listerby', 'burfjord'],
+      um: ['mc', 'ml', 'mp', 'buc', 'set'],
+      material: ['stejar', 'fag', 'rasinos', 'altele'],
+    }
+    return res
   }
 }

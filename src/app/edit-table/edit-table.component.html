@@ -1,0 +1,41 @@
+<p>
+  edit-table {{sectie}}!
+</p>
+<table class="u-full-width">
+  <thead>
+    <tr>
+      <th>Tip</th>
+      <th>Produs</th>
+      <th>UM</th>
+      <th>Material</th>
+      <th>Coeficient</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <select name="tip" id="tip" [(ngModel)]="newActionTemplate.tip" (change)="test()">
+          <option *ngFor="let tip of keys.tip" value={{tip}}>{{tip}}</option>
+        </select>
+      </td>
+      <td>
+        <select name="produs" id="produs" [(ngModel)]="newActionTemplate.produs" (change)="test()">
+          <option *ngFor="let produs of keys.produs" value={{produs}}>{{produs}}</option>
+        </select>
+      </td>
+      <td>
+        <select name="um" id="um" [(ngModel)]="newActionTemplate.um" (change)="test()">
+          <option *ngFor="let um of keys.um" value={{um}}>{{um}}</option>
+        </select>
+      </td>
+      <td>
+        <select name="material" id="material" [(ngModel)]="newActionTemplate.material" (change)="test()">
+          <option *ngFor="let material of keys.material" value={{material}}>{{material}}</option>
+        </select>
+      </td>
+      <td>
+        <input type="text" placeholder="Coef."  [(ngModel)]="newActionTemplate.coeficient" (change)="test()">
+      </td>
+    </tr>
+  </tbody>
+</table>
