@@ -1,6 +1,5 @@
-<p>
-  edit-table {{sectie}}!
-</p>
+<h2>{{sectie | titlecase}}</h2>
+<h5>Template</h5>
 <table class="u-full-width">
   <thead>
     <tr>
@@ -9,10 +8,11 @@
       <th>UM</th>
       <th>Material</th>
       <th>Coeficient</th>
+      <th> </th>
     </tr>
   </thead>
   <tbody>
-      <tr *ngFor="let ac of currentTemplates">
+      <tr *ngFor="let ac of currentTemplates; i as index">
         <td>
           <select name="tip" id="tip" [(ngModel)]="ac.tip" (change)="test()">
             <option *ngFor="let tip of keys.tip" value={{tip}}>{{tip | titlecase}}</option>
@@ -35,6 +35,9 @@
         </td>
         <td>
           <input type="text" placeholder="Coef."  [(ngModel)]="ac.coeficient" (change)="test()">
+        </td>
+        <td>
+          <button (click)="removeAc(i)">-</button>
         </td>
       </tr>
     <tr>
@@ -61,6 +64,10 @@
       <td>
         <input type="text" placeholder="Coef."  [(ngModel)]="newActionTemplate.coeficient" (change)="test()">
       </td>
+      <td>
+        <button (click)="addAc()">+</button>
+      </td>
     </tr>
   </tbody>
 </table>
+<button class="button-primary" (click)="saveTemplate()">Save</button>

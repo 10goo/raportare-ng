@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Action } from './action'
 import * as moment from 'moment'
-import { log } from 'util';
 import { AcModel } from './ac-model';
 
 @Injectable({
@@ -60,14 +59,14 @@ export class GetDataService {
 
   getdataForDate(date: string) {
     /*
-      TODO: Recieve real data instead of mock
+      TODO: Get real data instead of mock
     */
     return this.generateMock(date, 6)
   }
 
   getCurrentTemplate(sectie: string): Array<AcModel> {
     /*
-      TODO: Recieve real data instead of mock
+      TODO: Get real data instead of mock
     */
     let res = this.generateMock('01-01-2019', 10).map((el) => {
       delete el.cantitate
@@ -78,7 +77,27 @@ export class GetDataService {
     return res
   }
 
+  saveTemplateData(sectie, data): void {
+    /*
+      Save template to database
+  
+      Input:
+        sectie: string
+        data: data to be saved
+    */
+    
+    console.log('saving template to db')
+    
+  }
+
   getTemplateData() {
+    /*
+      TODO: get real data
+    
+      Input:
+        
+    */
+    
     let res = {
       tip: ['intrari', 'presare', 'finisare', 'ambalare', 'predare'],
       produs: ['proppmatt', 'alvaret', 'torsklint', 'listerby', 'burfjord'],

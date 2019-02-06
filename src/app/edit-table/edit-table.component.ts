@@ -22,6 +22,32 @@ export class EditTableComponent implements OnInit {
     this.currentTemplates = this.ds.getCurrentTemplate('TODOsectie')
   }
 
+  addAc(): void {
+    /*
+      Adds new action into current templates array
+    */
+    this.currentTemplates.push(this.newActionTemplate)
+    // Reset newActionTemplate
+    this.newActionTemplate = new AcModel()
+  }
+
+  removeAc(i: number): void {
+    /*
+      Removes action with index number i from currentTemplates
+    
+      Input:
+        i: number
+    */
+    this.currentTemplates.splice(i,1)
+  }
+
+  saveTemplate(): void {
+    /*
+      Send Template to Getdataservice forsaving   
+    */
+    this.ds.saveTemplateData(this.sectie, this.currentTemplates)
+  }
+
   test() {
     console.log(this.newActionTemplate)
   }
