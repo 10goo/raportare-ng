@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core'
 import { Action } from './action'
 import * as moment from 'moment'
 import { log } from 'util';
+import { AcModel } from './ac-model';
 
 @Injectable({
   providedIn: 'root'
@@ -64,13 +65,17 @@ export class GetDataService {
     return this.generateMock(date, 6)
   }
 
-  getCurrentTemplate(sectie: string): Array<Action> {
+  getCurrentTemplate(sectie: string): Array<AcModel> {
     /*
       TODO: Recieve real data instead of mock
     */
-
+    let res = this.generateMock('01-01-2019', 10).map((el) => {
+      delete el.cantitate
+      delete el.data
+      return el
+    })
     
-    return []
+    return res
   }
 
   getTemplateData() {

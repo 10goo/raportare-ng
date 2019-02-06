@@ -22,9 +22,10 @@ export class SecIris2DetailComponent implements OnInit {
     this.actions = this.ds.getdataForDate(this.date)
   }
 
-  saveTable(): void {
+  saveTable(): void {    
     console.log('saving table...')
   }
+  
 
   recalculate(ac): void {
     console.log('changed: ' + ac.cantitate.schimb_1)

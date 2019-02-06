@@ -10,14 +10,16 @@ import { AcModel } from '../ac-model';
 })
 export class EditTableComponent implements OnInit {
   sectie: string
-  keys;
-  newActionTemplate = new AcModel();
+  keys
+  newActionTemplate = new AcModel()
+  currentTemplates = []
 
-  constructor(private route: ActivatedRoute, private data: GetDataService) { }
+  constructor(private route: ActivatedRoute, private ds: GetDataService) { }
 
   ngOnInit() {
     this.sectie = this.route.snapshot.paramMap.get('sectie')
-    this.keys = this.data.getTemplateData()
+    this.keys = this.ds.getTemplateData()
+    this.currentTemplates = this.ds.getCurrentTemplate('TODOsectie')
   }
 
   test() {

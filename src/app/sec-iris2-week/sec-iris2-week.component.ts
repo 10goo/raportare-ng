@@ -16,6 +16,7 @@ export class SecIris2WeekComponent implements OnInit {
   ngOnInit() {
     this.now = moment(this.ds.getDate(), 'DD-MM-YYYY')
     this.calculateWeekDays()
+    
   }
 
   // Calendar functions
