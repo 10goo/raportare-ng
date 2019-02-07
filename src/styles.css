@@ -1,6 +1,10 @@
 @import url(./assets/css/normalize.css);
 @import url(./assets/css/skeleton.css);
 
+table {
+    line-height: normal;
+}
+
 th, td {
     padding: 2px;
 }
@@ -21,7 +25,8 @@ tbody>tr:hover {
 }
 
 td > input {
-    width: 5em;
+    width: 100%;
+    max-width: 4em;
 }
 
 /* Turn off arrows in input fields*/
@@ -29,6 +34,11 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
+}
+
+input {
+    border: none;
+    box-shadow: none;
 }
 
 .noselect {
@@ -39,4 +49,23 @@ input[type=number]::-webkit-outer-spin-button {
           -ms-user-select: none; /* Internet Explorer/Edge */
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome and Opera */
+  }
+
+  @media print {
+    /* Margins */
+    @page { margin: 0; }
+    body { padding: 1.6cm; }
+
+    .noprint, button{
+        display: none;
+    }
+
+    input[type="email"], input[type="number"], input[type="search"], 
+    input[type="text"], input[type="tel"], input[type="url"], 
+    input[type="password"], textarea, select {
+        border: none;
+        margin: 0;
+    }
+
+    
   }

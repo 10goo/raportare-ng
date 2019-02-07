@@ -8,7 +8,7 @@ import { AcModel } from './ac-model'
 })
 export class GetDataService {
   private date = moment().format('DD-MM-YYYY')
-  private template = this.getCurrentTemplate('iris2')
+  private template;
 
   constructor() { }
 
@@ -29,29 +29,26 @@ export class GetDataService {
       let m = td.material[Math.floor(Math.random()*td.material.length)]
       let u = td.um[Math.floor(Math.random()*td.um.length)]
       let ac: Action = {
-          data: date,
-          tip: t,
-          produs: p,
-          material: m,
-          um: u,
-          cantitate: {
-            schimb_1: 100,
-            schimb_2: 200,
-            schimb_3: 300,
-          },
-          coeficient: Math.random()
-        }
-        
-        parsed_json.push(ac)
+        data: date,
+        tip: t,
+        produs: p,
+        material: m,
+        um: u,
+        cantitate: {
+          schimb_1: 100,
+          schimb_2: 200,
+          schimb_3: 300,
+        },
+        coeficient: Math.random()
       }
-  // Sort by tip
+    parsed_json.push(ac)
+  }
+  // Sort by sort object from getListOrder()
   let order = this.getListOrder()
   let ordered_json = parsed_json.map(el => {
     el['order'] = order[el.tip]
     return el
   })
-  console.log(ordered_json)
-  
   ordered_json.sort((a,b) => {return (a.order >= b.order) ? 1 : - 1})
 
   return ordered_json
@@ -76,12 +73,18 @@ export class GetDataService {
     /*
       TODO: Get real data instead of mock
     */
-    let res = this.generateMock('01-01-2019', 10).map((el) => {
-      delete el.cantitate
-      delete el.data
-      return el
-    })
-    
+   console.log(this.template)
+   
+   let res
+   if (!this.template) {
+     res = this.generateMock('01-01-2019', 5).map((el) => {
+       delete el.cantitate
+       delete el.data
+       return el
+     })
+   } else {
+     res = this.template
+   }
     return res
   }
 
@@ -93,8 +96,7 @@ export class GetDataService {
         sectie: string
         data: data to be saved
     */
-    
-    console.log('saving template to db')
+    this.template = data
     
   }
 

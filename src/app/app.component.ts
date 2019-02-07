@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Location} from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +14,15 @@ export class AppComponent {
     console.log('logging out...')
   }
 
-  constructor(private location: Location) { }
+  constructor(private location: Location, private router: Router) { }
 
   goBack(): void {
     this.location.back()
+  }
+
+  test(route) {
+    this.router.navigate([route])
+    
   }
 
 }
