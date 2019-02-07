@@ -18,9 +18,12 @@
       <th>TOTAL</th>
     </tr>
   </thead>
-  <tbody>
-    <tr *ngFor="let ac of actions">
-      <td>{{ac.tip}}</td>
+  <tbody *ngFor="let tip of unique_tip">
+    <tr>
+      <th>{{tip | titlecase}}</th>
+    </tr>
+    <tr *ngFor="let ac of getAcByTip(tip)">
+      <td> </td>
       <td>{{ac.produs}}</td>
       <td>{{ac.um}}</td>
       <td>{{ac.material}}</td>
@@ -46,6 +49,22 @@
             >
           </td>
           <td>{{ac.cantitate.schimb_1 + ac.cantitate.schimb_2 + ac.cantitate.schimb_3}}</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <th>Randament</th>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>%</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
   </tbody>
 </table>

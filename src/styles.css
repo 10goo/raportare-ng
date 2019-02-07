@@ -1,6 +1,10 @@
 @import url(./assets/css/normalize.css);
 @import url(./assets/css/skeleton.css);
 
+th, td {
+    padding: 2px;
+}
+
 .container {
     max-width: 100%;
     width: 100%;
@@ -26,3 +30,13 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none; 
   margin: 0; 
 }
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+  }

@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core'
 import { Action } from './action'
 import * as moment from 'moment'
-import { AcModel } from './ac-model';
+import { AcModel } from './ac-model'
 
 @Injectable({
   providedIn: 'root'
 })
 export class GetDataService {
   private date = moment().format('DD-MM-YYYY')
+  private template = this.getCurrentTemplate('iris2')
 
   constructor() { }
 
@@ -32,21 +33,28 @@ export class GetDataService {
           tip: t,
           produs: p,
           material: m,
-          um: 'mc',
+          um: u,
           cantitate: {
             schimb_1: 100,
             schimb_2: 200,
             schimb_3: 300,
           },
-          coeficient: 0
+          coeficient: Math.random()
         }
         
         parsed_json.push(ac)
       }
   // Sort by tip
-  parsed_json.sort((a,b) => {return (a.tip <= b.tip) ? 1 : - 1})
+  let order = this.getListOrder()
+  let ordered_json = parsed_json.map(el => {
+    el['order'] = order[el.tip]
+    return el
+  })
+  console.log(ordered_json)
+  
+  ordered_json.sort((a,b) => {return (a.order >= b.order) ? 1 : - 1})
 
-  return parsed_json
+  return ordered_json
   }
 
   getDate(): string {
@@ -77,7 +85,7 @@ export class GetDataService {
     return res
   }
 
-  saveTemplateData(sectie, data): void {
+  saveCurrentTemplate(sectie, data): void {
     /*
       Save template to database
   
@@ -105,5 +113,21 @@ export class GetDataService {
       material: ['stejar', 'fag', 'rasinos', 'altele'],
     }
     return res
+  }
+
+  getListOrder() {
+    /*
+      Key-value pairs for ordering list
+  
+      Output:
+        returns array of objects with {key: number} format
+    */
+    return {
+      intrari: 1,
+      presare: 2,
+      finisare: 3,
+      ambalare: 4,
+      predare: 5
+    }
   }
 }

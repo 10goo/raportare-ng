@@ -45,7 +45,7 @@ export class EditTableComponent implements OnInit {
     /*
       Send Template to Getdataservice forsaving   
     */
-    this.ds.saveTemplateData(this.sectie, this.currentTemplates)
+    this.ds.saveCurrentTemplate(this.sectie, this.currentTemplates)
   }
 
   test() {

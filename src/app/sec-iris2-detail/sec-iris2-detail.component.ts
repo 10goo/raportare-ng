@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class SecIris2DetailComponent implements OnInit {
   actions
+  unique_tip
   date: string
 
   constructor(private ds: GetDataService, private route: ActivatedRoute) { }
@@ -20,12 +21,18 @@ export class SecIris2DetailComponent implements OnInit {
     this.ds.setDate(this.date)
     // Populate table
     this.actions = this.ds.getdataForDate(this.date)
+    // Get unique values for categorization
+    this.unique_tip = new Set(this.actions.map(item => item.tip))
   }
 
   saveTable(): void {    
-    console.log('saving table...')
+    console.log('saving ...')
+    
   }
-  
+
+  getAcByTip(tip: string) {
+    return this.actions.filter(el => el.tip == tip)
+  }
 
   recalculate(ac): void {
     console.log('changed: ' + ac.cantitate.schimb_1)
