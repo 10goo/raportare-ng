@@ -32,14 +32,14 @@ export class GetDataService {
         data: date,
         tip: t,
         produs: p,
-        material: m,
-        um: u,
+        material: 'fag',
+        um: 'mc',
         cantitate: {
           schimb_1: 100,
           schimb_2: 200,
           schimb_3: 300,
         },
-        coeficient: Math.random()
+        coeficient: 0.5
       }
     parsed_json.push(ac)
   }
@@ -66,7 +66,7 @@ export class GetDataService {
     /*
       TODO: Get real data instead of mock
     */
-    return this.generateMock(date, 6)
+    return this.generateMock(date, 5)
   }
 
   getCurrentTemplate(sectie: string): Array<AcModel> {
@@ -77,7 +77,7 @@ export class GetDataService {
    
    let res
    if (!this.template) {
-     res = this.generateMock('01-01-2019', 5).map((el) => {
+     res = this.generateMock('01-01-2019', 6).map((el) => {
        delete el.cantitate
        delete el.data
        return el

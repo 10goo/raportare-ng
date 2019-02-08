@@ -1,8 +1,8 @@
 <h2>Iris 2</h2>
 <h5 class="noselect">
-  <span class="link" (click)="backOneWeek()"><<</span>
+  <span class="link noprint" (click)="backOneWeek()"><<</span>
     Saptamana {{now.isoWeek()}}  
-  <span class="link" (click)="forwardOneWeek()">>></span>
+  <span class="link noprint" (click)="forwardOneWeek()">>></span>
 </h5>
 <table class="u-full-width">
   <thead>
@@ -42,8 +42,8 @@
       <th>TOTAL</th>
     </tr>
   </thead>
-  <tbody *ngFor="let ac of actions">
-    <tr>
+  <tbody>
+    <tr *ngFor="let row of rows">
       <td>{{ac.tip}}</td>
       <td>{{ac.produs}}</td>
       <td>{{ac.um}}</td>
