@@ -32,7 +32,7 @@ export class GetDataService {
         data: date,
         tip: t,
         produs: p,
-        material: 'fag',
+        material: m,
         um: 'mc',
         cantitate: {
           schimb_1: 100,

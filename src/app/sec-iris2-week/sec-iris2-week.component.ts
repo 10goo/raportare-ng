@@ -10,6 +10,7 @@ import * as _ from 'lodash'
 })
 export class SecIris2WeekComponent implements OnInit {
   now
+  daysData
   rows
   weekDays: Array<string> = []
 
@@ -26,12 +27,15 @@ export class SecIris2WeekComponent implements OnInit {
        of the week and generates array of row object
   
       Input:
-        nonne
+        none
     */
-    
+   // Build rows with data for all the days in week
+    this.rows = this.findRows().map(el => {
+      
+    })
   }
 
-  findRows(): void {
+  findRows() {
     /*
       Finds all the unique action models of the week
   
@@ -41,9 +45,9 @@ export class SecIris2WeekComponent implements OnInit {
     let ac_models = []
     //Get data for weekdays
     for (let day of this.weekDays){
-      let dayData = this.ds.getdataForDate(day)
+      this.daysData = this.ds.getdataForDate(day)
       // Convert actions to ac_models
-      let dayModelData = dayData.map(el => {
+      let dayModelData = this.daysData.map(el => {
         delete el.cantitate
         delete el.data                
         return el
@@ -54,14 +58,10 @@ export class SecIris2WeekComponent implements OnInit {
     ac_models = ac_models.reduce((acc, cur) => {
       return acc.concat(cur)
     })
-    console.log(_.uniq(ac_models))
     // Eliminate duplicate objects
-    let unique_ac_models = []
-    ac_models.map((el) => {
-      _.remove(ac_models, el)
-      unique_ac_models.push(el)
-    })
-    console.log(ac_models)
+    let unique_ac_models = _.uniqWith(ac_models, _.isEqual)
+    console.log(_.sortBy(unique_ac_models, ['tip', 'produs']))
+    return unique_ac_models
   }
 
   // Calendar functions
