@@ -7,7 +7,10 @@
 <table class="u-full-width">
   <thead>
     <tr>
-      <th colspan="4" rowspan="2"> </th>
+      <th rowspan="2"> </th>
+      <th rowspan="2">Produs</th>
+      <th rowspan="2">UM</th>
+      <th rowspan="2">Material</th>
       <th *ngFor="let day of weekDays" colspan="4" routerLink="/iris2-detail/{{day}}" class="link">{{day}}</th>
       <th colspan="4">TOTAL</th>
     </tr>
@@ -44,32 +47,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let row of rows">
-      <td>{{ac.tip}}</td>
-      <td>{{ac.produs}}</td>
-      <td>{{ac.um}}</td>
-      <td>{{ac.material}}</td>
-      <td>
-        <input 
-          type="number" 
-          [(ngModel)]="ac.cantitate.schimb_1"
-          (change)="recalculate(ac)"
-        >
-      </td>
-      <td>
-          <input 
-            type="number" 
-            [(ngModel)]="ac.cantitate.schimb_2"
-            (change)="recalculate(ac)"
-          >
-        </td>
-        <td>
-            <input 
-              type="number" 
-              [(ngModel)]="ac.cantitate.schimb_3"
-              (change)="recalculate(ac)"
-            >
-          </td>
-          <td>{{ac.cantitate.schimb_1 + ac.cantitate.schimb_2 + ac.cantitate.schimb_3}}</td>
+      <td *ngFor="let td of row">{{td}}</td>
     </tr>
   </tbody>
 </table>

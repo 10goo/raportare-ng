@@ -57,7 +57,10 @@ input {
   @media print {
     /* Margins */
     @page { margin: 0; }
-    body { padding: 1.6cm; }
+    body { 
+        padding: 1.6cm; 
+        font-size: 1em;
+    }
 
     .noprint, button{
         display: none;
