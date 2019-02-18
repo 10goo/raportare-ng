@@ -4,6 +4,7 @@ import * as moment from 'moment'
 import { AcModel } from './ac-model'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { filter, map } from 'rxjs/operators';
+import { provideRoutes } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -23,17 +24,22 @@ export class GetDataService {
         s: number of actions in the array
       Output: Array with elements of type Action
     */
-    let td = this.getTemplateData();
+    let td = {
+      tip: ['intrari', 'presare', 'finisare', 'ambalare', 'predare'],
+      produse: ['proppmatt', 'alvaret', 'torsklint', 'listerby', 'burfjord'],
+      um: ['mc', 'ml', 'mp', 'buc', 'set'],
+      material: ['stejar', 'fag', 'rasinos', 'altele'],
+    }
     let parsed_json = []
     for (let i=0;i<s; i++) {
       let t = td.tip[Math.floor(Math.random()*td.tip.length)]
-      let p = td.produs[Math.floor(Math.random()*td.produs.length)]
+      let p = td.produse[Math.floor(Math.random()*td.produse.length)]
       let m = td.material[Math.floor(Math.random()*td.material.length)]
       let u = td.um[Math.floor(Math.random()*td.um.length)]
       let ac: Action = {
         data: date,
         tip: t,
-        produs: p,
+        produse: p,
         material: m,
         um: 'mc',
         cantitate: {
@@ -71,12 +77,12 @@ export class GetDataService {
     return this.generateMock(date, 5)
   }
 
-  getCurrentTemplate(sectie: string): Array<AcModel> {
+  getCurrentTemplate(id_sectie: string): Array<AcModel> {
     /*
       TODO: Get real data instead of mock
     */
-   console.log(this.template)
-   
+  
+
    let res
    if (!this.template) {
      res = this.generateMock('01-01-2019', 6).map((el) => {
@@ -87,6 +93,7 @@ export class GetDataService {
    } else {
      res = this.template
    }
+    console.log(JSON.stringify(res))
     return res
   }
 
@@ -109,14 +116,18 @@ export class GetDataService {
       Input:
         
     */
+   return this.http.get(
+    'http://192.168.0.1:8181/data_get', 
+    {responseType: 'json'}
+    )
     
-    let res = {
-      tip: ['intrari', 'presare', 'finisare', 'ambalare', 'predare'],
-      produs: ['proppmatt', 'alvaret', 'torsklint', 'listerby', 'burfjord'],
-      um: ['mc', 'ml', 'mp', 'buc', 'set'],
-      material: ['stejar', 'fag', 'rasinos', 'altele'],
-    }
-    return res
+    // let res = {
+    //   tip: ['intrari', 'presare', 'finisare', 'ambalare', 'predare'],
+    //   produs: ['proppmatt', 'alvaret', 'torsklint', 'listerby', 'burfjord'],
+    //   um: ['mc', 'ml', 'mp', 'buc', 'set'],
+    //   material: ['stejar', 'fag', 'rasinos', 'altele'],
+    // }
+    // return res
   }
 
   getListOrder() {
@@ -135,24 +146,10 @@ export class GetDataService {
     }
   }
 
-  test() {    
-
-    return (this.http.get(
-      'http://192.168.0.1:8181/data_get', 
-      {responseType: 'json'}))
-      .pipe(
-        map(el => {
-          Object.keys(el)
-        })
+  test(id_sectie) {
+    return this.http.get(
+      'http://192.168.0.1:8181/template/1', 
+      {responseType: 'json'}
       )
-      
-  //   return this.http.post(
-  //     'http://192.168.0.1:8181/items',
-  //     {'name': 'korte', 'price': 120}, 
-  //     {
-  //       headers: new HttpHeaders({'Content-Type':  'application/json',}),
-  //       responseType: 'text'
-  //     }
-  //   )
   }
 }

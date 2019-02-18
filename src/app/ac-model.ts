@@ -1,13 +1,13 @@
 export class AcModel {
-    tip?: string;
-    produs: string;
+    tip: string;
+    produse: string;
     um: string;
     material: string;
     coeficient: number;
 
-    constructor(tip = "", produs = "", um = "", material = "", coeficient = 1) {
+    constructor(tip = "", produse = "", um = "", material = "", coeficient = 1) {
         this.tip = tip;
-        this.produs = produs;
+        this.produse = produse;
         this.um = um;
         this.material = material;
         this.coeficient = coeficient;

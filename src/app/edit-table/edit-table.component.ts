@@ -12,20 +12,36 @@ export class EditTableComponent implements OnInit {
   sectie: string
   keys
   newActionTemplate = new AcModel()
-  currentTemplates = []
+  currentTemplates
 
-  constructor(private route: ActivatedRoute, private ds: GetDataService) { }
-
+  constructor(private route: ActivatedRoute, private ds: GetDataService) { 
+    
+  }
+  
   ngOnInit() {
     this.sectie = this.route.snapshot.paramMap.get('sectie')
-    this.getKeys()//this.keys = this.ds.getTemplateData()
-    this.currentTemplates = this.ds.getCurrentTemplate('TODOsectie')
+    this.getKeys()
+    this.getCurrentTemplate(1)
+    // this.currentTemplates = this.ds.getCurrentTemplate('TODOsectie')
+    console.log('KEYS', this.keys)
+    console.log('TEMPLATE', this.currentTemplates)
   }
 
   getKeys() {
-    this.keys = this.ds.getTemplateData()
+    this.ds.getTemplateData().subscribe((el) => {
+      this.keys = el
+    console.log('KEYS2', this.keys)
+
+    })
+    // this.keys = this.ds.getTemplateData()
   }
-  
+
+  getCurrentTemplate(id_sectie){
+    this.ds.test(id_sectie).subscribe((el: {template: Array<any>}) => {
+      this.currentTemplates = JSON.parse(el.template[0])
+    })
+  }
+
   addAc(): void {
     /*
       Adds new action into current templates array

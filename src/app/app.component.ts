@@ -23,8 +23,8 @@ export class AppComponent {
   }
 
   test() {
-    this.ds.test().subscribe(el => {
-      console.log(el)
+    this.ds.test(1).subscribe(el => {
+      console.log(typeof(el), el)
     })
   }
 

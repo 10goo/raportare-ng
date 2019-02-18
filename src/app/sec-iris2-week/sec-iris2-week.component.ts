@@ -37,10 +37,10 @@ export class SecIris2WeekComponent implements OnInit {
     this.daysModelData.map(el => {
       let res = []
       // Create row 
-      res.push(el.tip, el.produs, el.um, el.material)
+      res.push(el.tip, el.produse, el.um, el.material)
       // Append the quantities in order of dates
       for (let i of this.weekDays){
-        let action = this.getCantitateByDate(i, el.tip, el.produs, el.um, el.material)
+        let action = this.getCantitateByDate(i, el.tip, el.produse, el.um, el.material)
         let s1 = action.cantitate.schimb_1 ? action.cantitate.schimb_1 : 0
         let s2 = action.cantitate.schimb_2 ? action.cantitate.schimb_2 : 0
         let s3 = action.cantitate.schimb_3 ? action.cantitate.schimb_3 : 0
@@ -61,12 +61,12 @@ export class SecIris2WeekComponent implements OnInit {
     this.rows = weekRow
   }
 
-  getCantitateByDate(date, tip, produs, um, material) {
+  getCantitateByDate(date, tip, produse, um, material) {
     /*
       Returns cantitate array for specified action
   
       Input:
-        date, tip, produs, um, material: string
+        date, tip, produse, um, material: string
         
       Output:
         object of type {schimb_1: number, schimb_2: number, schimb_3: number}

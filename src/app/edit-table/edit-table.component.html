@@ -1,4 +1,4 @@
-<h2>{{sectie | titlecase}}</h2>
+<h2>{{sectie}}</h2>
 <h5>Template</h5>
 <table class="u-full-width">
   <thead>
@@ -11,16 +11,16 @@
       <th> </th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf="currentTemplates && keys">
       <tr *ngFor="let ac of currentTemplates; i as index">
         <td>
           <select name="tip" id="tip" [(ngModel)]="ac.tip" (change)="test()">
-            <option *ngFor="let tip of keys.tip" value={{tip}}>{{tip | titlecase}}</option>
+            <option *ngFor="let tip of keys.tip" value={{tip}}>{{tip}}</option>
           </select>
         </td>
         <td>
-          <select name="produs" id="produs" [(ngModel)]="ac.produs" (change)="test()">
-            <option *ngFor="let produs of keys.produs" value={{produs}}>{{produs | titlecase}}</option>
+          <select name="produse" id="produse" [(ngModel)]="ac.produse" (change)="test()">
+            <option *ngFor="let produse of keys.produse" value={{produse}}>{{produse}}</option>
           </select>
         </td>
         <td>
@@ -30,7 +30,7 @@
         </td>
         <td>
           <select name="material" id="material" [(ngModel)]="ac.material" (change)="test()">
-            <option *ngFor="let material of keys.material" value={{material}}>{{material | titlecase}}</option>
+            <option *ngFor="let material of keys.material" value={{material}}>{{material}}</option>
           </select>
         </td>
         <td>
@@ -43,12 +43,12 @@
     <tr>
       <td>
         <select name="tip" id="tip" [(ngModel)]="newActionTemplate.tip" (change)="test()">
-          <option *ngFor="let tip of keys.tip" value={{tip}}>{{tip | titlecase}}</option>
+          <option *ngFor="let tip of keys.tip" value={{tip}}>{{tip}}</option>
         </select>
       </td>
       <td>
-        <select name="produs" id="produs" [(ngModel)]="newActionTemplate.produs" (change)="test()">
-          <option *ngFor="let produs of keys.produs" value={{produs}}>{{produs | titlecase}}</option>
+        <select name="produse" id="produse" [(ngModel)]="newActionTemplate.produse" (change)="test()">
+          <option *ngFor="let produse of keys.produse" value={{produse}}>{{produse}}</option>
         </select>
       </td>
       <td>
