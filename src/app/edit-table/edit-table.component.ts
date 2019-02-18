@@ -18,10 +18,14 @@ export class EditTableComponent implements OnInit {
 
   ngOnInit() {
     this.sectie = this.route.snapshot.paramMap.get('sectie')
-    this.keys = this.ds.getTemplateData()
+    this.getKeys()//this.keys = this.ds.getTemplateData()
     this.currentTemplates = this.ds.getCurrentTemplate('TODOsectie')
   }
 
+  getKeys() {
+    this.keys = this.ds.getTemplateData()
+  }
+  
   addAc(): void {
     /*
       Adds new action into current templates array

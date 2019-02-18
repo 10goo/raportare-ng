@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core'
 import { Action } from './action'
 import * as moment from 'moment'
 import { AcModel } from './ac-model'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { filter, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ export class GetDataService {
   private date = moment().format('DD-MM-YYYY')
   private template;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   generateMock(date, s: number) {
     /*
@@ -131,5 +133,26 @@ export class GetDataService {
       ambalare: 4,
       predare: 5
     }
+  }
+
+  test() {    
+
+    return (this.http.get(
+      'http://192.168.0.1:8181/data_get', 
+      {responseType: 'json'}))
+      .pipe(
+        map(el => {
+          Object.keys(el)
+        })
+      )
+      
+  //   return this.http.post(
+  //     'http://192.168.0.1:8181/items',
+  //     {'name': 'korte', 'price': 120}, 
+  //     {
+  //       headers: new HttpHeaders({'Content-Type':  'application/json',}),
+  //       responseType: 'text'
+  //     }
+  //   )
   }
 }
