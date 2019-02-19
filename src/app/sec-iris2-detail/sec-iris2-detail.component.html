@@ -2,7 +2,7 @@
 <h5>Raport productie: {{date}}</h5>
 
 <button routerLink="/edit-table/iris2">Editare</button>
-<table class="u-full-width">
+<table class="u-full-width" *ngIf="actions && unique_tip">
   <thead>
     <tr>
       <th rowspan="2"> </th>

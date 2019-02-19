@@ -70,31 +70,35 @@ export class GetDataService {
     this.date = date;
   }
 
-  getdataForDate(date: string) {
+  getdataForDate(date: string, id_sectie: string) {
     /*
       TODO: Get real data instead of mock
     */
-    return this.generateMock(date, 5)
+   // Convert date string from DD-MM-YYYY template to YYYYMMDD
+   let a = date.split("-")
+   date = a[2] + a[1] + a[0]
+   // Send request and return Observable
+   return this.http.get(
+    'http://192.168.0.1:8181/productie_json/' + date + "/" + id_sectie, 
+    {responseType: 'json'}
+    )
+    // return this.generateMock(date, 5)
   }
 
-  getCurrentTemplate(id_sectie: string): Array<AcModel> {
+  getCurrentTemplate(id_sectie: string) {
     /*
-      TODO: Get real data instead of mock
+      Get the current template for the given factory
+
+      Input:
+        id_sectie: string
+      Output:
+        Observable with template object
     */
   
-
-   let res
-   if (!this.template) {
-     res = this.generateMock('01-01-2019', 6).map((el) => {
-       delete el.cantitate
-       delete el.data
-       return el
-     })
-   } else {
-     res = this.template
-   }
-    console.log(JSON.stringify(res))
-    return res
+   return this.http.get(
+    'http://192.168.0.1:8181/template/' + id_sectie, 
+    {responseType: 'json'}
+    )
   }
 
   saveCurrentTemplate(sectie, data): void {
@@ -111,23 +115,18 @@ export class GetDataService {
 
   getTemplateData() {
     /*
-      TODO: get real data
+      Get all the options for creating selects for AcModel parameters
     
       Input:
+        none
+      Output:
+        Observable of templates object
         
     */
    return this.http.get(
     'http://192.168.0.1:8181/data_get', 
     {responseType: 'json'}
     )
-    
-    // let res = {
-    //   tip: ['intrari', 'presare', 'finisare', 'ambalare', 'predare'],
-    //   produs: ['proppmatt', 'alvaret', 'torsklint', 'listerby', 'burfjord'],
-    //   um: ['mc', 'ml', 'mp', 'buc', 'set'],
-    //   material: ['stejar', 'fag', 'rasinos', 'altele'],
-    // }
-    // return res
   }
 
   getListOrder() {

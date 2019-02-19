@@ -90,7 +90,7 @@ export class SecIris2WeekComponent implements OnInit {
     let ac_models = []
     //Get data for weekdays
     for (let day of this.weekDays){
-      let data = this.ds.getdataForDate(day)
+      let data = this.ds.generateMock("01-01-2000", 5)
       // Append clone to daysData
       this.daysData.push(_.cloneDeep(data))
       // Convert actions to ac_models

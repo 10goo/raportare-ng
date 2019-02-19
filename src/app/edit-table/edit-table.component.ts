@@ -22,22 +22,17 @@ export class EditTableComponent implements OnInit {
     this.sectie = this.route.snapshot.paramMap.get('sectie')
     this.getKeys()
     this.getCurrentTemplate(1)
-    // this.currentTemplates = this.ds.getCurrentTemplate('TODOsectie')
-    console.log('KEYS', this.keys)
-    console.log('TEMPLATE', this.currentTemplates)
   }
 
   getKeys() {
     this.ds.getTemplateData().subscribe((el) => {
       this.keys = el
-    console.log('KEYS2', this.keys)
 
     })
-    // this.keys = this.ds.getTemplateData()
   }
 
   getCurrentTemplate(id_sectie){
-    this.ds.test(id_sectie).subscribe((el: {template: Array<any>}) => {
+    this.ds.getCurrentTemplate(id_sectie).subscribe((el: {template: Array<any>}) => {
       this.currentTemplates = JSON.parse(el.template[0])
     })
   }

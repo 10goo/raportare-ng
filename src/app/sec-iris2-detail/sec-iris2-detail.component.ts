@@ -20,14 +20,19 @@ export class SecIris2DetailComponent implements OnInit {
     // Update the date in the service
     this.ds.setDate(this.date)
     // Populate table
-    this.actions = this.ds.getdataForDate(this.date)
+    this.ds.getdataForDate(this.date, '1').subscribe((el: {productie: Array<any>}) => {
+      this.actions = []
+      el.productie.map(x => this.actions.push((x)))
+      this.unique_tip = new Set(this.actions.map(item => item.tip))
+      console.log(this.actions)
+      
+    })
+    //this.actions = this.ds.getdataForDate(this.date, "1")
     // Get unique values for categorization
-    this.unique_tip = new Set(this.actions.map(item => item.tip))
   }
 
   saveTable(): void {    
     console.log('saving ...')
-    
   }
 
   getAcByTip(tip: string) {
