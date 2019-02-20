@@ -9,6 +9,7 @@ import { GetDataService } from './get-data.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  sectii
   
   logOut(): void {
     console.log('logging out...')
@@ -16,6 +17,9 @@ export class AppComponent {
 
   constructor(private location: Location, private router: Router, private ds: GetDataService) {
     this.test()
+    // Get sectii and ids
+    this.ds.dlSectii()
+    this.sectii = this.ds.getSectii()
    }
 
   goBack(): void {

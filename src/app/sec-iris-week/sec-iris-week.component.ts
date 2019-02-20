@@ -2,26 +2,31 @@ import { Component, OnInit } from '@angular/core'
 import * as moment from 'moment'
 import { GetDataService } from '../get-data.service'
 import * as _ from 'lodash'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-sec-iris2-week',
-  templateUrl: './sec-iris2-week.component.html',
-  styleUrls: ['./sec-iris2-week.component.css']
+  selector: 'app-sec-iris-week',
+  templateUrl: './sec-iris-week.component.html',
+  styleUrls: ['./sec-iris-week.component.css']
 })
-export class SecIris2WeekComponent implements OnInit {
+export class SecIrisWeekComponent implements OnInit {
   now
+  sectie
+  name
   daysModelData
   daysData = []
   rows = []
   weekDays: Array<string> = []
 
-  constructor(private ds: GetDataService) { }
+  constructor(private ds: GetDataService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.now = moment(this.ds.getDate(), 'DD-MM-YYYY')
     this.calculateWeekDays()
     this.findRows()
-    this.buildRows()
+    this.sectie = this.route.snapshot.paramMap.get('sectie')
+    // this.name = this.ds.getSectieById(this.sectie)
+    //this.buildRows()
     
   }
 

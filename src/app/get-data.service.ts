@@ -11,9 +11,35 @@ import { provideRoutes } from '@angular/router';
 })
 export class GetDataService {
   private date = moment().format('DD-MM-YYYY')
-  private template;
+  private sectii;
 
   constructor(private http: HttpClient) { }
+
+  dlSectii() {
+    this.http.get('http://192.168.0.1:8181/data_get/', {responseType: 'json'})
+      .subscribe((el: {sectie}) => {
+        this.sectii = Object.keys(el.sectie).map(el2 => 
+          {
+            let x = {
+              name: el.sectie[el2],
+              id: el2
+            }
+            return x
+          }
+        ) 
+      })
+  }
+
+  getSectii() {
+    // Object.keys(this.sectii).find(key => this.sectii[key] === name)
+    return this.sectii
+  }
+
+  getSectieById(id): string {
+    return this.sectii.filter((el) => {
+      return el.id == id
+    })
+  } 
 
   generateMock(date, s: number) {
     /*
@@ -97,7 +123,9 @@ export class GetDataService {
   
    return this.http.get(
     'http://192.168.0.1:8181/template/' + id_sectie, 
-    {responseType: 'json'}
+    {
+      headers: new HttpHeaders().set("Access-Control-Allow-Origin", "*"),
+      responseType: 'json'}
     )
   }
 
@@ -109,7 +137,7 @@ export class GetDataService {
         sectie: string
         data: data to be saved
     */
-    this.template = data
+    console.log(sectie, data)
     
   }
 

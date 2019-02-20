@@ -1,4 +1,4 @@
-<h2>Iris 2</h2>
+<h2><span *ngIf="name">{{name | async}}</span></h2>
 <h5 class="noselect">
   <span class="link noprint" (click)="backOneWeek()"><<</span>
     Saptamana {{now.isoWeek()}}  
@@ -11,7 +11,7 @@
       <th rowspan="2">Produs</th>
       <th rowspan="2">UM</th>
       <th rowspan="2">Material</th>
-      <th *ngFor="let day of weekDays" colspan="4" routerLink="/iris2-detail/{{day}}" class="link">{{day}}</th>
+      <th *ngFor="let day of weekDays" colspan="4" routerLink="/iris-detail/{{sectie}}/{{day}}" class="link">{{day}}</th>
       <th colspan="4">TOTAL</th>
     </tr>
     <tr>

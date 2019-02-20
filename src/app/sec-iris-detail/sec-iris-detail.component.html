@@ -1,7 +1,7 @@
-<h3>Sectie: Iris 2</h3>
+<h3>Sectie: <span *ngIf="name">{{name}}</span></h3>
 <h5>Raport productie: {{date}}</h5>
 
-<button routerLink="/edit-table/iris2">Editare</button>
+<button routerLink="/edit-table/{{sectie}}">Editare</button>
 <table class="u-full-width" *ngIf="actions && unique_tip">
   <thead>
     <tr>
