@@ -121,7 +121,17 @@ export class GetDataService {
         sectie: string
         data: data to be saved
     */
-    console.log(sectie, data)
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'responseType': 'text'
+      })
+    };
+
+    this.http.post(
+      'http://192.168.0.1:8181/template',
+      {id: sectie, template: data}
+    )
     
   }
 
