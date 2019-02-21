@@ -4,42 +4,26 @@ import * as moment from 'moment'
 import { AcModel } from './ac-model'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { filter, map } from 'rxjs/operators';
-import { provideRoutes } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GetDataService {
   private date = moment().format('DD-MM-YYYY')
-  private sectii;
+  private data: Observable<any>
 
   constructor(private http: HttpClient) { }
 
-  dlSectii() {
-    this.http.get('http://192.168.0.1:8181/data_get/', {responseType: 'json'})
-      .subscribe((el: {sectie}) => {
-        this.sectii = Object.keys(el.sectie).map(el2 => 
-          {
-            let x = {
-              name: el.sectie[el2],
-              id: el2
-            }
-            return x
-          }
-        ) 
-      })
+  dlData() {
+    this.data = this.http.get('http://192.168.0.1:8181/data_get', {responseType: 'json'})
+    return this.data
   }
 
-  getSectii() {
+  getData() {
     // Object.keys(this.sectii).find(key => this.sectii[key] === name)
-    return this.sectii
+    return this.data
   }
-
-  getSectieById(id): string {
-    return this.sectii.filter((el) => {
-      return el.id == id
-    })
-  } 
 
   generateMock(date, s: number) {
     /*
@@ -175,7 +159,7 @@ export class GetDataService {
 
   test(id_sectie) {
     return this.http.get(
-      'http://192.168.0.1:8181/template/1', 
+      'http://192.168.0.1:8181/data_get', 
       {responseType: 'json'}
       )
   }

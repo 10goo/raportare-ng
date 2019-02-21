@@ -46,7 +46,4 @@ export class SecIrisDetailComponent implements OnInit {
     console.log('changed: ' + ac.cantitate.schimb_1)
   }
 
-  getSectieById(id) {
-    this.ds.getSectieById(id)
-  }
 }

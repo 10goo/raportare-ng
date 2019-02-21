@@ -25,6 +25,9 @@ export class SecIrisWeekComponent implements OnInit {
     this.calculateWeekDays()
     this.findRows()
     this.sectie = this.route.snapshot.paramMap.get('sectie')
+    this.ds.getData().subscribe(el=> {
+      this.name = el.sectie[this.sectie]
+    })
     // this.name = this.ds.getSectieById(this.sectie)
     //this.buildRows()
     
