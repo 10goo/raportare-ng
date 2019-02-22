@@ -1,16 +1,24 @@
 <div class="row noprint">
   <button class="back one column" (click)="goBack()"><</button>
   <div class="four columns">
-    <select name="menu" id="menu" class="u-full-width" *ngIf="sectii">
-      <!-- <option 
+    <!-- <select name="menu" id="menu" class="u-full-width" *ngIf="sectii">
+      <option 
       *ngFor="let sectie of sectii"
       routerLink="iris-week/{{sectie.id}}" 
       value={{sectie.id}}>
         {{sectie.name}}
-      </option> -->
-      <option value="1" routerLink="iris-week/1">Sectie 1</option>
-      <option value="2" routerLink="iris-week/2">Sectie 2</option>
-    </select>
+      </option>
+    </select> -->
+    <button mat-button [matMenuTriggerFor]="menu">Sectii</button>
+    <mat-menu #menu="matMenu">
+      <button  
+        *ngFor="let sectie of sectii"
+        routerLink="iris-week/{{sectie.id}}"
+        mat-menu-item
+      >
+        {{sectie.name}}
+      </button>
+    </mat-menu>
   </div>
     <button class="u-pull-right logout" (click)="logOut()">Logout</button>
 </div>

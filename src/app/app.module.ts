@@ -3,6 +3,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // <-- NgModel
 import { HttpClientModule } from '@angular/common/http'
 
+// Angular Material
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatMenuModule} from '@angular/material/menu';
+
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SecIrisDetailComponent } from './sec-iris-detail/sec-iris-detail.component';
@@ -23,6 +30,11 @@ import { HeaderComponent } from './header/header.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    //Angular Material
+    MatButtonModule,
+    MatCheckboxModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
