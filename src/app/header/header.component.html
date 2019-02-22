@@ -2,12 +2,14 @@
   <button class="back one column" (click)="goBack()"><</button>
   <div class="four columns">
     <select name="menu" id="menu" class="u-full-width" *ngIf="sectii">
-      <option 
+      <!-- <option 
       *ngFor="let sectie of sectii"
-      routerLink="/iris-week/{{sectie.id}}" 
+      routerLink="iris-week/{{sectie.id}}" 
       value={{sectie.id}}>
         {{sectie.name}}
-      </option>
+      </option> -->
+      <option value="1" routerLink="iris-week/1">Sectie 1</option>
+      <option value="2" routerLink="iris-week/2">Sectie 2</option>
     </select>
   </div>
     <button class="u-pull-right logout" (click)="logOut()">Logout</button>

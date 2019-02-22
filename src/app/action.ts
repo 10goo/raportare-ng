@@ -8,7 +8,7 @@ export class Action extends AcModel{
         schimb_3? : number;
     }
 
-    constructor(data = "", cantitate = {schimb_1 : 0}) {
+    constructor(data = "", cantitate = {schimb_1 : 0, schimb_2: 0, schimb_3: 0 }) {
         super(); //Must construct parent
         this.data = data;
         this.cantitate = cantitate;

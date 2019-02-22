@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GetDataService } from '../get-data.service';
 import { AcModel } from '../ac-model';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-edit-table',
@@ -14,14 +15,14 @@ export class EditTableComponent implements OnInit {
   newActionTemplate = new AcModel()
   currentTemplates
 
-  constructor(private route: ActivatedRoute, private ds: GetDataService) { 
+  constructor(private route: ActivatedRoute, private ds: GetDataService, private location: Location) { 
     
   }
   
   ngOnInit() {
     this.sectie = this.route.snapshot.paramMap.get('sectie')
     this.getKeys()
-    this.getCurrentTemplate(1)
+    this.getCurrentTemplate(parseInt(this.sectie))
   }
 
   getKeys() {
@@ -32,8 +33,10 @@ export class EditTableComponent implements OnInit {
   }
 
   getCurrentTemplate(id_sectie){
-    this.ds.getCurrentTemplate(id_sectie).subscribe((el: {template: Array<any>}) => {
-      this.currentTemplates = JSON.parse(el.template[0])
+    this.ds.getCurrentTemplate(id_sectie).subscribe(el => {
+      el = el.replace(/\\/g, "")
+      this.currentTemplates = JSON.parse(el)
+      console.log(el)
     })
   }
 
@@ -53,6 +56,7 @@ export class EditTableComponent implements OnInit {
       Input:
         i: number
     */
+   console.log(i)
     this.currentTemplates.splice(i,1)
   }
 
@@ -61,6 +65,7 @@ export class EditTableComponent implements OnInit {
       Send Template to Getdataservice forsaving   
     */
     this.ds.saveCurrentTemplate(this.sectie, this.currentTemplates)
+    this.location.back()
   }
 
   test() {

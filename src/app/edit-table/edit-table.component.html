@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody *ngIf="currentTemplates && keys">
-      <tr *ngFor="let ac of currentTemplates; i as index">
+      <tr *ngFor="let ac of currentTemplates; index as i">
         <td>
           <select name="tip" id="tip" [(ngModel)]="ac.tip" (change)="test()">
             <option *ngFor="let tip of keys.tip" value={{tip}}>{{tip}}</option>

@@ -27,6 +27,11 @@ export class HeaderComponent implements OnInit {
     })
    }
 
+   navigate(id) {
+     console.log(id)
+     this.router.navigate(['iris-week/'+id])
+   }
+
   goBack(): void {
     this.location.back()
   }

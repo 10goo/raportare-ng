@@ -80,17 +80,20 @@ export class GetDataService {
     this.date = date;
   }
 
+  reverseDateString(date): string {
+    return date.split("-").reverse().join("")
+  }
+
   getdataForDate(date: string, id_sectie: string) {
     /*
       TODO: Get real data instead of mock
     */
    // Convert date string from DD-MM-YYYY template to YYYYMMDD
-   let a = date.split("-")
-   date = a[2] + a[1] + a[0]
+    date = this.reverseDateString(date)
    // Send request and return Observable
    return this.http.get(
-    'http://192.168.0.1:8181/productie_json/' + date + "/" + id_sectie, 
-    {responseType: 'json'}
+    'http://192.168.0.1:8181/productie_json/' + date + "/" + id_sectie,
+    {responseType: 'text'}
     )
     // return this.generateMock(date, 5)
   }
@@ -109,7 +112,7 @@ export class GetDataService {
     'http://192.168.0.1:8181/template/' + id_sectie, 
     {
       headers: new HttpHeaders().set("Access-Control-Allow-Origin", "*"),
-      responseType: 'json'}
+      responseType: 'text'}
     )
   }
 
@@ -121,18 +124,45 @@ export class GetDataService {
         sectie: string
         data: data to be saved
     */
+   const url = 'http://192.168.0.1:8181/template'
+    const httpOptions = {
+      headers: new HttpHeaders({
+        // 'Content-Type':  'text',
+        'Content-Type':  'application/json',
+        // 'responseType': 'text'
+      })
+    };
+    const d = {id: sectie, template: JSON.stringify(data)}
+
+    this.http.post(url, JSON.stringify(d), httpOptions).
+    subscribe(
+      data => console.log('success', data),
+      error => console.log('oops', error)
+    )
+  }
+
+  saveTable(sectie, date, data): void {
+    /*
+      Save template to database
+  
+      Input:
+        sectie: string
+        data: data to be saved
+    */
+   const url = 'http://192.168.0.1:8181/productie_json'
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'responseType': 'text'
+        // 'responseType': 'text'
       })
     };
+    const d = {id_sectie: sectie, data: this.reverseDateString(date), productie_json: JSON.stringify(data)}
 
-    this.http.post(
-      'http://192.168.0.1:8181/template',
-      {id: sectie, template: data}
+    this.http.post(url, JSON.stringify(d), httpOptions).
+    subscribe(
+      data => console.log('success', data),
+      error => console.log('oops', error)
     )
-    
   }
 
   getTemplateData() {
