@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GetDataService } from '../get-data.service';
 import { AcModel } from '../ac-model';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+
 
 @Component({
   selector: 'app-edit-table',
@@ -70,6 +72,12 @@ export class EditTableComponent implements OnInit {
 
   test() {
     console.log(this.newActionTemplate)
+  }
+
+  // DRAG AND DROP FUNCTIONS
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.currentTemplates, event.previousIndex, event.currentIndex)
+    console.log(this.currentTemplates)
   }
 
 }

@@ -7,8 +7,7 @@ import { HttpClientModule } from '@angular/common/http'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatMenuModule} from '@angular/material/menu';
-
-
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,7 +35,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     //Angular Material
     MatButtonModule,
     MatCheckboxModule,
-    MatMenuModule
+    MatMenuModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

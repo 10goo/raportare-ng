@@ -8,11 +8,12 @@
       <th>UM</th>
       <th>Material</th>
       <th>Coeficient</th>
+      <th>Merged</th>
       <th> </th>
     </tr>
   </thead>
-  <tbody *ngIf="currentTemplates && keys">
-      <tr *ngFor="let ac of currentTemplates; index as i">
+  <tbody *ngIf="currentTemplates && keys" cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+      <tr class="example-box" *ngFor="let ac of currentTemplates; index as i" cdkDrag>
         <td>
           <select name="tip" id="tip" [(ngModel)]="ac.tip" (change)="test()">
             <option *ngFor="let tip of keys.tip" value={{tip}}>{{tip}}</option>
@@ -35,6 +36,13 @@
         </td>
         <td>
           <input type="text" placeholder="Coef."  [(ngModel)]="ac.coeficient" (change)="test()">
+        </td>
+        <td>
+          <input 
+          type="checkbox" 
+          [checked]="ac.merged" 
+          (change)="ac.merged = !ac.merged" 
+          >
         </td>
         <td>
           <button (click)="removeAc(i)">-</button>
@@ -63,6 +71,11 @@
       </td>
       <td>
         <input type="text" placeholder="Coef."  [(ngModel)]="newActionTemplate.coeficient" (change)="test()">
+      </td>
+      <td>
+        <input type="checkbox" 
+        [checked]="newActionTemplate.merged" 
+        (change)="newActionTemplate.merged = !newActionTemplate.merged">
       </td>
       <td>
         <button class="button-primary" (click)="addAc()">+</button>

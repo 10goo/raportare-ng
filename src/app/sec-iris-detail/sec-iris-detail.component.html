@@ -27,24 +27,32 @@
       <td>{{ac.produse}}</td>
       <td>{{ac.um}}</td>
       <td>{{ac.material}}</td>
-      <td>
+      <td *ngIf="!ac.merged">
         <input 
           type="number" 
           [(ngModel)]="ac.cantitate.schimb_1"
           (change)="recalculate(ac)"
         >
       </td>
-      <td>
+      <td *ngIf="!ac.merged">
           <input 
             type="number" 
             [(ngModel)]="ac.cantitate.schimb_2"
             (change)="recalculate(ac)"
           >
         </td>
-        <td>
+        <td *ngIf="!ac.merged">
             <input 
               type="number" 
               [(ngModel)]="ac.cantitate.schimb_3"
+              (change)="recalculate(ac)"
+            >
+          </td>
+          <td *ngIf="ac.merged" colspan="3" class="center">
+            <input 
+              class="merged"
+              type="number" 
+              [(ngModel)]="ac.cantitate.schimb_1"
               (change)="recalculate(ac)"
             >
           </td>

@@ -57,7 +57,8 @@ export class GetDataService {
           schimb_2: 200,
           schimb_3: 300,
         },
-        coeficient: 0.5
+        coeficient: 0.5,
+        merged: false
       }
     parsed_json.push(ac)
   }

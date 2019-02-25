@@ -3,6 +3,7 @@ import * as moment from 'moment'
 import { GetDataService } from '../get-data.service'
 import * as _ from 'lodash'
 import { ActivatedRoute } from '@angular/router';
+import { switchMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-sec-iris-week',
@@ -11,8 +12,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SecIrisWeekComponent implements OnInit {
   now
-  sectie
-  name
+  sectie$
+  name$
   daysModelData
   daysData = []
   rows = []
@@ -24,10 +25,15 @@ export class SecIrisWeekComponent implements OnInit {
     this.now = moment(this.ds.getDate(), 'DD-MM-YYYY')
     this.calculateWeekDays()
     this.findRows()
-    this.sectie = this.route.snapshot.paramMap.get('sectie')
-    this.ds.getData().subscribe(el=> {
-      this.name = el.sectie[this.sectie]
-    })
+    this.sectie$ = this.route.paramMap.pipe(map(el => el.get('sectie')))
+    this.name$ = this.route.paramMap.pipe(switchMap(params =>{
+      return this.ds.getData().pipe(map(x => {
+        return x.sectie[params.get('sectie')]
+      }))
+    }))
+    // this.ds.getData().subscribe(el=> {
+    //   this.name = el.sectie[this.sectie]
+    // })
     // this.name = this.ds.getSectieById(this.sectie)
     //this.buildRows()
     

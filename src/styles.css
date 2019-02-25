@@ -31,6 +31,14 @@ td > input {
     max-width: 4em;
 }
 
+.merged {
+    max-width: 12em;
+}
+
+.center {
+    text-align: center;
+}
+
 /* Turn off arrows in input fields*/
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button {
