@@ -16,6 +16,7 @@ import { SecIrisDetailComponent } from './sec-iris-detail/sec-iris-detail.compon
 import { SecIrisWeekComponent } from './sec-iris-week/sec-iris-week.component';
 import { EditTableComponent } from './edit-table/edit-table.component';
 import { HeaderComponent } from './header/header.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HeaderComponent } from './header/header.component';
     SecIrisDetailComponent,
     SecIrisWeekComponent,
     EditTableComponent,
-    HeaderComponent
+    HeaderComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -3,12 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { SecIrisWeekComponent } from './sec-iris-week/sec-iris-week.component';
 import { SecIrisDetailComponent } from './sec-iris-detail/sec-iris-detail.component';
 import { EditTableComponent } from './edit-table/edit-table.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/iris-week/1', pathMatch: 'full' },
   { path: 'iris-week/:sectie', component: SecIrisWeekComponent },
   { path: 'iris-detail/:sectie/:data', component: SecIrisDetailComponent },
   { path: 'edit-table/:sectie', component: EditTableComponent },
+  { path: '', redirectTo: '/iris-week/1', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
