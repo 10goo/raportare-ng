@@ -29,6 +29,7 @@ tbody>tr:hover {
 td > input {
     width: 100%;
     max-width: 4em;
+    text-align: center;
 }
 
 .merged {

@@ -25,6 +25,8 @@ export class HeaderComponent implements OnInit {
         return {name: el.sectie[x], id: x}
       })
     })
+    // Test
+    // this.ds.test().subscribe(el => console.log('dataaa :', el))
    }
 
    navigate(id) {

@@ -47,7 +47,46 @@
   </thead>
   <tbody>
     <tr *ngFor="let row of rows">
-      <td *ngFor="let td of row">{{td}}</td>
+      <!-- <td *ngFor="let td of row">{{td}}</td> -->
+      <td>{{row[1]}}</td>
+      <td>{{row[2]}}</td>
+      <td>{{row[3]}}</td>
+      <td>{{row[4]}}</td>
+      <td *ngIf="row[0]" colspan="4">{{row[5]}}</td>
+      <td *ngIf="!row[0]">{{row[5]}}</td>
+      <td *ngIf="!row[0]">{{row[6]}}</td>
+      <td *ngIf="!row[0]">{{row[7]}}</td>
+      <td *ngIf="!row[0]">{{row[8]}}</td>
+      <td *ngIf="row[0]" colspan="4">{{row[9]}}</td>
+      <td *ngIf="!row[0]">{{row[9]}}</td>
+      <td *ngIf="!row[0]">{{row[10]}}</td>
+      <td *ngIf="!row[0]">{{row[11]}}</td>
+      <td *ngIf="!row[0]">{{row[12]}}</td>
+      <td *ngIf="row[0]" colspan="4">{{row[13]}}</td>
+      <td *ngIf="!row[0]">{{row[13]}}</td>
+      <td *ngIf="!row[0]">{{row[14]}}</td>
+      <td *ngIf="!row[0]">{{row[15]}}</td>
+      <td *ngIf="!row[0]">{{row[16]}}</td>
+      <td *ngIf="row[0]" colspan="4">{{row[17]}}</td>
+      <td *ngIf="!row[0]">{{row[17]}}</td>
+      <td *ngIf="!row[0]">{{row[18]}}</td>
+      <td *ngIf="!row[0]">{{row[19]}}</td>
+      <td *ngIf="!row[0]">{{row[20]}}</td>
+      <td *ngIf="row[0]" colspan="4">{{row[21]}}</td>
+      <td *ngIf="!row[0]">{{row[21]}}</td>
+      <td *ngIf="!row[0]">{{row[22]}}</td>
+      <td *ngIf="!row[0]">{{row[23]}}</td>
+      <td *ngIf="!row[0]">{{row[24]}}</td>
+      <td *ngIf="row[0]" colspan="4">{{row[25]}}</td>
+      <td *ngIf="!row[0]">{{row[25]}}</td>
+      <td *ngIf="!row[0]">{{row[26]}}</td>
+      <td *ngIf="!row[0]">{{row[27]}}</td>
+      <td *ngIf="!row[0]">{{row[28]}}</td>
+      <td *ngIf="row[0]" colspan="4">{{row[29]}}</td>
+      <td *ngIf="!row[0]">{{row[29]}}</td>
+      <td *ngIf="!row[0]">{{row[30]}}</td>
+      <td *ngIf="!row[0]">{{row[31]}}</td>
+      <td *ngIf="!row[0]">{{row[32]}}</td>
     </tr>
   </tbody>
 </table>

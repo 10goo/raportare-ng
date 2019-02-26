@@ -3,7 +3,7 @@ import { Action } from './action'
 import * as moment from 'moment'
 import { AcModel } from './ac-model'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -23,6 +23,23 @@ export class GetDataService {
   getData() {
     // Object.keys(this.sectii).find(key => this.sectii[key] === name)
     return this.data
+  }
+
+  generateMockWeek() {
+    let array_text = `[
+      [{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":500,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}}],
+      [{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"proppmatt\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":500,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}}],
+      [{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"listerby\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":500,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}}],
+      [{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"sniglar\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":500,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}}],
+      [{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"norsjon\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":500,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}}],
+      [{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"brattvag\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":500,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}}]
+    ]`
+    let obs = Observable.create((observer) => {
+      observer.next(array_text)
+    })
+    return obs.pipe(map((el: string) => {
+      return JSON.parse(el.replace(/\\/g, ""))
+    }))
   }
 
   generateMock(date, s: number) {
@@ -97,6 +114,15 @@ export class GetDataService {
     {responseType: 'text'}
     )
     // return this.generateMock(date, 5)
+  }
+
+  getdataForWeek(date: string, id_sectie: string) {
+    date = this.reverseDateString(date)
+   // Send request and return Observable
+   return this.http.get(
+    'http://192.168.0.1:8181/productie_week/' + date + "/" + id_sectie,
+    {responseType: 'json'}
+    )
   }
 
   getCurrentTemplate(id_sectie: string) {
@@ -198,10 +224,10 @@ export class GetDataService {
     }
   }
 
-  test(id_sectie) {
+  test() {
     return this.http.get(
-      'http://192.168.0.1:8181/data_get', 
-      {responseType: 'json'}
+      'http://192.168.0.1:8181/productie_week/' + '20190211' + "/" + '1',
+      {responseType: 'text'}
       )
   }
 }

@@ -8,14 +8,14 @@
       <th rowspan="2"> </th>
       <th rowspan="2">Produs</th>
       <th rowspan="2">UM</th>
-      <th rowspan="2">Material</th>
-      <th colspan="4">Cantitati</th>
+      <th rowspan="2" class="center">Material</th>
+      <th colspan="4" class="center">Cantitati</th>
     </tr>
     <tr>
-      <th>I</th>
-      <th>II</th>
-      <th>III</th>
-      <th>TOTAL</th>
+      <th class="center">I</th>
+      <th class="center">II</th>
+      <th class="center">III</th>
+      <th class="center">TOTAL</th>
     </tr>
   </thead>
   <tbody *ngFor="let tip of unique_tip">
@@ -26,22 +26,22 @@
       <td> </td>
       <td>{{ac.produse}}</td>
       <td>{{ac.um}}</td>
-      <td>{{ac.material}}</td>
-      <td *ngIf="!ac.merged">
+      <td class="center">{{ac.material}}</td>
+      <td *ngIf="!ac.merged"  class="center">
         <input 
           type="number" 
           [(ngModel)]="ac.cantitate.schimb_1"
           (change)="recalculate(ac)"
         >
       </td>
-      <td *ngIf="!ac.merged">
+      <td *ngIf="!ac.merged"  class="center">
           <input 
             type="number" 
             [(ngModel)]="ac.cantitate.schimb_2"
             (change)="recalculate(ac)"
           >
         </td>
-        <td *ngIf="!ac.merged">
+        <td *ngIf="!ac.merged"  class="center">
             <input 
               type="number" 
               [(ngModel)]="ac.cantitate.schimb_3"
@@ -56,9 +56,10 @@
               (change)="recalculate(ac)"
             >
           </td>
-          <td>{{ac.cantitate.schimb_1 + ac.cantitate.schimb_2 + ac.cantitate.schimb_3}}</td>
+          <td class="center">{{ac.cantitate.schimb_1 + ac.cantitate.schimb_2 + ac.cantitate.schimb_3}}</td>
     </tr>
   </tbody>
+<!-- Fejleszteni
   <tbody>
     <tr>
       <th>Randament</th>
@@ -75,5 +76,6 @@
       <td> </td>
     </tr>
   </tbody>
+   -->
 </table>
 <button class="button-primary" (click)="saveTable()">Save</button>
