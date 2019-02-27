@@ -13,9 +13,8 @@ export class AuthService {
   constructor() { }
 
   loginWithEmailPassword(email: string, password: string) {
-    this.isLoggedIn = Observable.create((subscriber) => {subscriber.next(true)})
-    this.canEdit = Observable.create((subscriber) => {subscriber.next(true)})
-    this.isAdmin = Observable.create((subscriber) => {subscriber.next(true)})
-
+    this.isLoggedIn$ = Observable.create((subscriber) => {subscriber.next(true)})
+    this.canEdit$ = Observable.create((subscriber) => {subscriber.next(true)})
+    this.isAdmin$ = Observable.create((subscriber) => {subscriber.next(true)})
   }
 }
