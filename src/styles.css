@@ -1,20 +1,41 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-@import url(./assets/css/normalize.css);
-@import url(./assets/css/skeleton.css);
+/* @import url(./assets/css/normalize.css);
+@import url(./assets/css/skeleton.css); */
+
+html, body, viewport, app-root {
+    height: 100%;
+}
+
+#h2 {
+    font-size: 2.5em;
+}
+
+#h5 {
+    font-size: 2em;
+}
+
+body {
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+    margin: 0;
+}
 
 table {
-    line-height: normal;
+    line-height: normal;  
 }
 
 th, td {
-    padding: 2px;
+    padding: 2px !important;
 }
 
 .container {
     max-width: 100%;
     width: 100%;
     padding: 1em;
+}
+
+.full-width {
+    width: 100%;
 }
 
 tbody>tr:hover {
@@ -30,6 +51,8 @@ td > input {
     width: 100%;
     max-width: 4em;
     text-align: center;
+    margin-bottom: 0;
+    padding: 0.2rem;
 }
 
 .merged {

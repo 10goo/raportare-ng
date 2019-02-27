@@ -1,5 +1,5 @@
-<h2>{{sectie}}</h2>
-<h5>Template</h5>
+<h2 id="h2">{{sectie}}</h2>
+<h5 id="h5">Template</h5>
 <table class="u-full-width">
   <thead>
     <tr>
@@ -45,7 +45,7 @@
           >
         </td>
         <td>
-          <button (click)="removeAc(i)">-</button>
+          <button mat-raised-button color="secondary" (click)="removeAc(i)">-</button>
         </td>
       </tr>
     <tr>
@@ -78,9 +78,9 @@
         (change)="newActionTemplate.merged = !newActionTemplate.merged">
       </td>
       <td>
-        <button class="button-primary" (click)="addAc()">+</button>
+        <button mat-raised-button color="primary" (click)="addAc()">+</button>
       </td>
     </tr>
   </tbody>
 </table>
-<button class="button-primary" (click)="saveTemplate()">Save</button>
+<button mat-raised-button (click)="saveTemplate()" color="primary">Save</button>

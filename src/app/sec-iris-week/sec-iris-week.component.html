@@ -1,5 +1,5 @@
-<h3><span *ngIf="name$ ">Sectie: {{name$ | async}}</span></h3>
-<h5 class="noselect">
+<h3 id="h2"><span *ngIf="name$ ">Sectie: {{name$ | async}}</span></h3>
+<h5 id="h5" class="noselect">
   <span class="link noprint" (click)="backOneWeek()"><<</span>
     Saptamana {{now.isoWeek()}}  
   <span class="link noprint" (click)="forwardOneWeek()">>></span>
@@ -57,32 +57,32 @@
       <td *ngIf="!row[0]">{{row[6]}}</td>
       <td *ngIf="!row[0]">{{row[7]}}</td>
       <td *ngIf="!row[0]">{{row[8]}}</td>
-      <td *ngIf="row[0]" colspan="4">{{row[9]}}</td>
+      <td class="center" *ngIf="row[0]" colspan="4">{{row[9]}}</td>
       <td *ngIf="!row[0]">{{row[9]}}</td>
       <td *ngIf="!row[0]">{{row[10]}}</td>
       <td *ngIf="!row[0]">{{row[11]}}</td>
       <td *ngIf="!row[0]">{{row[12]}}</td>
-      <td *ngIf="row[0]" colspan="4">{{row[13]}}</td>
+      <td class="center" *ngIf="row[0]" colspan="4">{{row[13]}}</td>
       <td *ngIf="!row[0]">{{row[13]}}</td>
       <td *ngIf="!row[0]">{{row[14]}}</td>
       <td *ngIf="!row[0]">{{row[15]}}</td>
       <td *ngIf="!row[0]">{{row[16]}}</td>
-      <td *ngIf="row[0]" colspan="4">{{row[17]}}</td>
+      <td class="center" *ngIf="row[0]" colspan="4">{{row[17]}}</td>
       <td *ngIf="!row[0]">{{row[17]}}</td>
       <td *ngIf="!row[0]">{{row[18]}}</td>
       <td *ngIf="!row[0]">{{row[19]}}</td>
       <td *ngIf="!row[0]">{{row[20]}}</td>
-      <td *ngIf="row[0]" colspan="4">{{row[21]}}</td>
+      <td class="center" *ngIf="row[0]" colspan="4">{{row[21]}}</td>
       <td *ngIf="!row[0]">{{row[21]}}</td>
       <td *ngIf="!row[0]">{{row[22]}}</td>
       <td *ngIf="!row[0]">{{row[23]}}</td>
       <td *ngIf="!row[0]">{{row[24]}}</td>
-      <td *ngIf="row[0]" colspan="4">{{row[25]}}</td>
+      <td class="center" *ngIf="row[0]" colspan="4">{{row[25]}}</td>
       <td *ngIf="!row[0]">{{row[25]}}</td>
       <td *ngIf="!row[0]">{{row[26]}}</td>
       <td *ngIf="!row[0]">{{row[27]}}</td>
       <td *ngIf="!row[0]">{{row[28]}}</td>
-      <td *ngIf="row[0]" colspan="4">{{row[29]}}</td>
+      <td class="center" *ngIf="row[0]" colspan="4">{{row[29]}}</td>
       <td *ngIf="!row[0]">{{row[29]}}</td>
       <td *ngIf="!row[0]">{{row[30]}}</td>
       <td *ngIf="!row[0]">{{row[31]}}</td>

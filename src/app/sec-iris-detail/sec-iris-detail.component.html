@@ -1,7 +1,7 @@
-<h2><span *ngIf="name">{{name}}</span></h2>
-<h5>Raport productie: {{date}}</h5>
+<h2 id="h2"><span *ngIf="name">{{name}}</span></h2>
+<h5 id="h5">Raport productie: {{date}}</h5>
 
-<button routerLink="/edit-table/{{sectie}}">Editare</button>
+<button mat-raised-button color="secondary" routerLink="/edit-table/{{sectie}}">Editare</button>
 <table class="u-full-width" *ngIf="actions && unique_tip">
   <thead>
     <tr>
@@ -78,4 +78,4 @@
   </tbody>
    -->
 </table>
-<button class="button-primary" (click)="saveTable()">Save</button>
+<button mat-raised-button (click)="saveTable()" color="primary">Save</button>

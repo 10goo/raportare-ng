@@ -1,0 +1,11 @@
+:host {
+    display: flex;
+    justify-content: center;
+}
+
+.login-card {
+    max-width: 500px;
+    min-width: 300px;
+    position: relative;
+    top: 100px;
+}
