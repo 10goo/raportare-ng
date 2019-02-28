@@ -22,6 +22,7 @@ body {
 
 table {
     line-height: normal;  
+    overflow-x: scroll;
 }
 
 th, td {

@@ -12,14 +12,15 @@ import { AuthService } from '../auth.service';
 export class HeaderComponent implements OnInit {
   sectii
   
-  logOut(): void {
-    console.log('logging out...')
-  }
-
+  
   constructor(private location: Location, private router: Router, private ds: GetDataService, private auth: AuthService) {
   }
-
+  
   ngOnInit() {
+    this.generateSectiiMenu()
+  }
+
+  generateSectiiMenu() {
     // Get sectii and ids
     this.ds.dlData().subscribe((el: {sectie}) => {
       let sectii_all = Object.keys(el.sectie).map(x => {
@@ -27,21 +28,13 @@ export class HeaderComponent implements OnInit {
       })
       this.sectii = sectii_all.filter(el => {
         return this.auth.sectii.find(x => {
-          return el.id === x
-          })
+          return el.id == x
+        })
       })
     })
-    // Test
-    // this.ds.test().subscribe(el => console.log('dataaa :', el))
-   }
-
-   navigate(id) {
-     console.log(id)
-     this.router.navigate(['iris-week/'+id])
-   }
-
-  goBack(): void {
-    this.location.back()
   }
-
+  
+  logOut(): void {
+    this.auth.logOut()
+  }
 }

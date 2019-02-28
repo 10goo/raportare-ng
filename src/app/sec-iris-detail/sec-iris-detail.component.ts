@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { GetDataService } from '../get-data.service'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import {Location} from '@angular/common';
 import { AuthService } from '../auth.service';
 
@@ -16,7 +16,13 @@ export class SecIrisDetailComponent implements OnInit {
   sectie
   name
 
-  constructor(private ds: GetDataService, private route: ActivatedRoute, private location: Location, private auth: AuthService) { }
+  constructor(
+    private ds: GetDataService, 
+    private route: ActivatedRoute, 
+    private location: Location, 
+    private auth: AuthService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
     // Get date and sectie id
@@ -55,6 +61,10 @@ export class SecIrisDetailComponent implements OnInit {
     })
   }
 
+  roundTwoDecimals(x) {
+    return Math.round(x*100)/100
+  }
+
   saveTable(): void {    
     this.ds.saveTable(this.sectie, this.date, this.actions)
     this.location.back()
@@ -66,6 +76,11 @@ export class SecIrisDetailComponent implements OnInit {
 
   recalculate(ac): void {
     console.log('changed: ' + ac.cantitate.schimb_1)
+  }
+
+  goBack() {
+    // this.location.back()
+    this.router.navigate(['week/' + this.sectie])
   }
 
 }

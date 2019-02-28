@@ -3,7 +3,7 @@ import * as moment from 'moment'
 import { GetDataService } from '../get-data.service'
 import * as _ from 'lodash'
 import { ActivatedRoute } from '@angular/router';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -17,7 +17,7 @@ export class SecIrisWeekComponent implements OnInit {
   name$
   daysModelData
   daysData
-  rows = []
+  rows$
   weekDays: Array<string> = []
 
   constructor(private ds: GetDataService, private route: ActivatedRoute) {
@@ -32,37 +32,33 @@ export class SecIrisWeekComponent implements OnInit {
         return x.sectie[params.get('sectie')]
       }))
     }))
-    this.findRows()
-    // this.buildRows()
-    // this.ds.getData().subscribe(el=> {
-    //   this.name = el.sectie[this.sectie]
-    // })
-    // this.name = this.ds.getSectieById(this.sectie)
     
+    this.findRows()
   }
 
-  buildRows(): void {
+  ngOnDestroy() {
+    console.log('week destroyed')
+  }
+
+  buildRows(daysModelData, daysData) {
     /*
        of the week and generates array of row object
     */
    // Build rows with data for all the days in week
-    let weekRow = []
-    this.daysModelData.map(el => {
+    let weekRows = []
+    daysModelData.map(el => {
       let res = []
-      // Create row 
+      // Create row
       res.push(el.merged, el.tip, el.produse, el.um, el.material)
       // Append the quantities in order of dates
       for (let date of this.weekDays){
-        let action = this.getCantitateByDate(date, el.tip, el.produse, el.um, el.material)
-        // console.log('params: ', date, el.tip, el.produse, el.um, el.material)
-        // console.log('action: ', action)
-        // console.log('find :', _.find(this.daysData, {data: date, tip: el.tip, produse: el.produse, material: el.material, um: el.um,}))
+        let action = this.getCantitateByDate(daysData, date, el.tip, el.produse, el.um, el.material)
 
         let s1 = action.cantitate.schimb_1 ? action.cantitate.schimb_1 : 0
         let s2 = action.cantitate.schimb_2 ? action.cantitate.schimb_2 : 0
         let s3 = action.cantitate.schimb_3 ? action.cantitate.schimb_3 : 0
         let total = s1 + s2 + s3
-        res.push(s1, s2, s3, total)
+        res.push(Math.round(s1 * 100) /100, Math.round(s2 * 100) /100, Math.round(s3 * 100) /100, Math.round(total * 100) /100)
       }
       // Calculating week total
       let ts1= 0, ts2 = 0, ts3 = 0, tt = 0
@@ -70,13 +66,11 @@ export class SecIrisWeekComponent implements OnInit {
       for (let i = 6; res[i]; i+=4) {ts2 += res[i] }
       for (let i = 7; res[i]; i+=4) {ts3 += res[i] }
       for (let i = 8; res[i]; i+=4) {tt += res[i] }
-      res = [...res, ts1, ts2, ts3, tt]
+      res = [...res, Math.round(ts1*100)/100, Math.round(ts2*100)/100, Math.round(ts3*100)/100, Math.round(tt*100)/100]
       
-      weekRow.push(res)
+      weekRows.push(res)
     })
-    
-    this.rows = weekRow
-    console.log(weekRow)
+    return weekRows
   }
   
   findRows() {
@@ -84,42 +78,46 @@ export class SecIrisWeekComponent implements OnInit {
       Finds all the unique action models of the week
     */
     //Get data for weekdays
-    this.daysData = this.ds.getdataForWeek(
+    this.rows$ = this.ds.getdataForWeek(
       this.weekDays[0],
       this.route.snapshot.paramMap.get('sectie')
     )
-    .subscribe((el: Array<any>)=> {
-      el = el.map(x=> {
-        if (x[0]){
-          return JSON.parse(x[0])
-        } else {
-          return []
-        }
-      })
-      // Convert actions to ac_models
-      let ac_models = []
-      let days = []
-      for (let day of el) {
-        day.map(x => {
-          days.push(_.cloneDeep(x))
-          delete x.cantitate
-          delete x.date                
-          return x
+      .pipe(
+        map((el: Array<any>) => {
+          el = el.map(x => {
+            if (x[0]){
+              return JSON.parse(x[0])
+            } else {
+              return []
+            }
+          })
+          // Convert actions to ac_models
+          let ac_models = []
+          let days = []
+          for (let day of el) {
+            day.map(x => {
+              days.push(_.cloneDeep(x))
+              delete x.cantitate
+              delete x.date                
+              return x
+            })
+            ac_models.push(day)
+          }
+    
+          // Flatten arrays ac_models and this.daysData
+          ac_models = ac_models.reduce((acc, cur) => {
+            return acc.concat(cur)
+          })
+          // Eliminate duplicate objects
+          let unique_ac_models = _.uniqWith(ac_models, _.isEqual)
+    
+          this.daysData = days
+          this.daysModelData = unique_ac_models
+          return this.buildRows(unique_ac_models, days)
         })
-        ac_models.push(day)
-      }
 
-      // Flatten arrays ac_models and this.daysData
-      ac_models = ac_models.reduce((acc, cur) => {
-        return acc.concat(cur)
-      })
-      // Eliminate duplicate objects
-      let unique_ac_models = _.uniqWith(ac_models, _.isEqual)
+      )
 
-      this.daysData = days
-      this.daysModelData = unique_ac_models
-      this.buildRows()
-    })
     
   }
 
@@ -127,39 +125,51 @@ export class SecIrisWeekComponent implements OnInit {
   //   /*
   //     Finds all the unique action models of the week
   //   */
-  //   let ac_models = []
   //   //Get data for weekdays
-  //   for (let day of this.weekDays){
-  //     let data = this.ds.generateMock("01-01-2000", 5)
-  //     // Append clone to daysData
-  //     this.daysData.push(_.cloneDeep(data))
-  //     // Convert actions to ac_models
-  //     let dayModelData = data.map(el => {
-  //       delete el.cantitate
-  //       delete el.data                
-  //       return el
+  //   this.daysData = this.ds.getdataForWeek(
+  //     this.weekDays[0],
+  //     this.route.snapshot.paramMap.get('sectie')
+  //   )
+  //   .subscribe((el: Array<any>)=> {
+  //     el = el.map(x=> {
+  //       if (x[0]){
+  //         return JSON.parse(x[0])
+  //       } else {
+  //         return []
+  //       }
   //     })
-  //     ac_models.push(dayModelData)
-  //   }
-  //   // Flatten arrays ac_models and this.daysData
-  //   ac_models = ac_models.reduce((acc, cur) => {
-  //     return acc.concat(cur)
-  //   })
-  //   this.daysData = this.daysData.reduce((acc, cur) => {
-  //     return acc.concat(cur)
-  //   })
-  //   // Eliminate duplicate objects
-  //   let unique_ac_models = _.uniqWith(ac_models, _.isEqual)
+  //     // Convert actions to ac_models
+  //     let ac_models = []
+  //     let days = []
+  //     for (let day of el) {
+  //       day.map(x => {
+  //         days.push(_.cloneDeep(x))
+  //         delete x.cantitate
+  //         delete x.date                
+  //         return x
+  //       })
+  //       ac_models.push(day)
+  //     }
 
-  //   this.daysModelData = _.orderBy(unique_ac_models, ['tip'], ['asc'])
-  //   console.log(this.daysModelData)
+  //     // Flatten arrays ac_models and this.daysData
+  //     ac_models = ac_models.reduce((acc, cur) => {
+  //       return acc.concat(cur)
+  //     })
+  //     // Eliminate duplicate objects
+  //     let unique_ac_models = _.uniqWith(ac_models, _.isEqual)
+
+  //     this.daysData = days
+  //     this.daysModelData = unique_ac_models
+  //     this.buildRows()
+  //   })
+    
   // }
 
-  getCantitateByDate(date, tip, produs, um, material) {
+  getCantitateByDate(daysData, date, tip, produs, um, material) {
     /*
       Returns cantitate array for specified action
     */
-    let res = _.find(this.daysData, {date: date, tip: tip, produse: produs, um: um, material: material})
+    let res = _.find(daysData, {date: date, tip: tip, produse: produs, um: um, material: material})
     if (res){
       return res
     } else {
@@ -170,7 +180,6 @@ export class SecIrisWeekComponent implements OnInit {
       }}
     }
   }
-
 
   // Calendar functions
 

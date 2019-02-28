@@ -46,7 +46,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let row of rows">
+    <tr *ngFor="let row of rows$ | async">
       <!-- <td *ngFor="let td of row">{{td}}</td> -->
       <td>{{row[1]}}</td>
       <td>{{row[2]}}</td>

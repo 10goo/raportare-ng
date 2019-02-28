@@ -16,12 +16,10 @@
 </div> -->
 <mat-toolbar color="primary" >
   <mat-toolbar-row>
-    <button mat-button (click)="goBack()"> < Inapoi</button>
-    <span class="full-width"></span>
     <span>Raportare ISC</span>
     <span class="full-width"></span>
     <button mat-button [matMenuTriggerFor]="menu" *ngIf="auth.isLoggedIn">Sectii</button>
-    <button mat-button *ngIf="auth.isLoggedIn">Iesire</button>
+    <button mat-button *ngIf="auth.isLoggedIn" (click)="logOut()">Iesire</button>
     <mat-menu #menu="matMenu">
       <button  
         *ngFor="let sectie of sectii"
