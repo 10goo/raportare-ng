@@ -5,16 +5,25 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  isLoggedIn$
-  canEdit$
-  isAdmin$
+  isLoggedIn = true
+  canEdit = true
+  isAdmin
+  sectii = ['1', '2', '7']
 
 
   constructor() { }
 
-  loginWithEmailPassword(email: string, password: string) {
-    this.isLoggedIn$ = Observable.create((subscriber) => {subscriber.next(true)})
-    this.canEdit$ = Observable.create((subscriber) => {subscriber.next(true)})
-    this.isAdmin$ = Observable.create((subscriber) => {subscriber.next(true)})
+  loginWithEmailPassword(email: string, password: string): Observable<any> {
+    let obs$ =  Observable.create((subscriber) => {subscriber.next({
+      isLoggedIn: true,
+      canEdit: true,
+      isAdmin: true,
+      sectii: ['1', '2', '7']
+    })})
+    console.log(typeof(obs$))
+    
+    return obs$
+
+    
   }
 }

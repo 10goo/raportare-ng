@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { GetDataService } from '../get-data.service'
 import { ActivatedRoute } from '@angular/router'
 import {Location} from '@angular/common';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-sec-iris-detail',
@@ -15,7 +16,7 @@ export class SecIrisDetailComponent implements OnInit {
   sectie
   name
 
-  constructor(private ds: GetDataService, private route: ActivatedRoute, private location: Location) { }
+  constructor(private ds: GetDataService, private route: ActivatedRoute, private location: Location, private auth: AuthService) { }
 
   ngOnInit() {
     // Get date and sectie id

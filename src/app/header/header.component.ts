@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
 import { Router } from '@angular/router';
 import { GetDataService } from '../get-data.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-header',
@@ -15,14 +16,19 @@ export class HeaderComponent implements OnInit {
     console.log('logging out...')
   }
 
-  constructor(private location: Location, private router: Router, private ds: GetDataService) {
+  constructor(private location: Location, private router: Router, private ds: GetDataService, private auth: AuthService) {
   }
 
   ngOnInit() {
     // Get sectii and ids
     this.ds.dlData().subscribe((el: {sectie}) => {
-      this.sectii = Object.keys(el.sectie).map(x => {
+      let sectii_all = Object.keys(el.sectie).map(x => {
         return {name: el.sectie[x], id: x}
+      })
+      this.sectii = sectii_all.filter(el => {
+        return this.auth.sectii.find(x => {
+          return el.id === x
+          })
       })
     })
     // Test
