@@ -1,2 +1,6 @@
 @import url(../../assets/css/normalize.css);
 @import url(../../assets/css/skeleton.css);
+
+.cancel-btn {
+    margin-left: 1rem;
+}

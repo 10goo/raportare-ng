@@ -80,7 +80,7 @@ export class SecIrisDetailComponent implements OnInit {
 
   goBack() {
     // this.location.back()
-    this.router.navigate(['week/' + this.sectie])
+    this.router.navigate(['iris-week/' + this.sectie])
   }
 
 }

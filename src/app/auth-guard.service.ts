@@ -17,10 +17,10 @@ export class AuthGuardService implements CanActivate{
     const expectedLevel = route.data.expectedLevel
 
     // If user is not authenticated or does not have access route to login page
-    if (!this.auth.isLoggedIn || !(canAccessSectie && expectedLevel <= this.auth.level)) {
-      this.router.navigate(['login']);
-      return false;
-    }
+    // if (!this.auth.isLoggedIn || !(canAccessSectie && expectedLevel <= this.auth.level)) {
+    //   this.router.navigate(['login']);
+    //   return false;
+    // }
     return true;
   }
 }

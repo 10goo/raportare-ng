@@ -110,6 +110,8 @@ export class SecIrisWeekComponent implements OnInit {
           })
           // Eliminate duplicate objects
           let unique_ac_models = _.uniqWith(ac_models, _.isEqual)
+          // Get unique values for categorization
+          let unique_tip = new Set(unique_ac_models.map(item => item.tip))
     
           this.daysData = days
           this.daysModelData = unique_ac_models
