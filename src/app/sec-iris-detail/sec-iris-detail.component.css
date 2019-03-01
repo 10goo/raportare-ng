@@ -4,3 +4,25 @@
 .cancel-btn {
     margin-left: 1rem;
 }
+
+td > input {
+    width: 100%;
+    max-width: 4em;
+    text-align: center;
+    margin-bottom: 0;
+    padding: 0.2rem;
+}
+
+input .merged {
+    max-width: 12em;
+}
+
+.center {
+    text-align: center;
+}
+
+table {
+    line-height: normal;  
+    /* display: block; */
+    overflow-x: scroll;
+}
