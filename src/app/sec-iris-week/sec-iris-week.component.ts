@@ -3,7 +3,7 @@ import * as moment from 'moment'
 import { GetDataService } from '../get-data.service'
 import * as _ from 'lodash'
 import { ActivatedRoute } from '@angular/router';
-import { switchMap, map, tap } from 'rxjs/operators';
+import { switchMap, map, tap, reduce, distinct, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -17,8 +17,9 @@ export class SecIrisWeekComponent implements OnInit {
   name$
   daysModelData
   daysData
-  rows$
+  rows
   weekDays: Array<string> = []
+  unique_tip
 
   constructor(private ds: GetDataService, private route: ActivatedRoute) {
     this.now = moment(this.ds.getDate(), 'DD-MM-YYYY')
@@ -37,7 +38,7 @@ export class SecIrisWeekComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    console.log('week destroyed')
+    // console.log('week destroyed')
   }
 
   buildRows(daysModelData, daysData) {
@@ -70,15 +71,71 @@ export class SecIrisWeekComponent implements OnInit {
       
       weekRows.push(res)
     })
+
     return weekRows
+    // _.sortBy(weekRows, [0, 1]) // Sort result array by tip(primary criteria) and produs(secondary criteria)  
   }
   
+  // findRows() {
+  //   /*
+  //     Finds all the unique action models of the week
+  //   */
+  //   //Get data for weekdays
+  //   this.rows$ = this.ds.getdataForWeek(
+  //     this.weekDays[0],
+  //     this.route.snapshot.paramMap.get('sectie')
+  //   )
+  //     .pipe(
+  //       map((el: Array<any>) => {
+  //         el = el.map(x => {
+  //           if (x[0]){
+  //             return JSON.parse(x[0])
+  //           } else {
+  //             return []
+  //           }
+  //         })
+  //         // Convert actions to ac_models
+  //         let ac_models = []
+  //         let days = []
+  //         for (let day of el) {
+  //           day.map(x => {
+  //             days.push(_.cloneDeep(x))
+  //             delete x.cantitate
+  //             delete x.date                
+  //             return x
+  //           })
+  //           ac_models.push(day)
+  //         }
+    
+  //         // Flatten arrays ac_models and this.daysData
+  //         ac_models = ac_models.reduce((acc, cur) => {
+  //           return acc.concat(cur)
+  //         })
+  //         // Eliminate duplicate objects
+  //         let unique_ac_models = _.uniqWith(ac_models, _.isEqual)
+  //         // Get unique values for categorization
+  //         let unique_tip = new Set(unique_ac_models.map(item => item.tip))
+    
+  //         this.daysData = days
+  //         this.daysModelData = unique_ac_models
+
+  //         // Build rows
+  //         return this.buildRows(unique_ac_models, days)
+  //       })
+  //     )
+
+  //     // Create tip category headers
+  //     this.rows$.subscribe(el => {
+  //       this.unique_tip = new Set(el.map(x=> x[1]))
+  //     })
+  // }
+
   findRows() {
     /*
       Finds all the unique action models of the week
     */
     //Get data for weekdays
-    this.rows$ = this.ds.getdataForWeek(
+    this.ds.getdataForWeek(
       this.weekDays[0],
       this.route.snapshot.paramMap.get('sectie')
     )
@@ -115,57 +172,17 @@ export class SecIrisWeekComponent implements OnInit {
     
           this.daysData = days
           this.daysModelData = unique_ac_models
+
+          // Build rows
           return this.buildRows(unique_ac_models, days)
         })
+      ).subscribe(el => {
+        this.rows = el
+        // Create tip category headers
+        this.unique_tip = new Set(el.map(x=> x[1]))
+      })
 
-      )
-
-    
   }
-
-  // findRows() {
-  //   /*
-  //     Finds all the unique action models of the week
-  //   */
-  //   //Get data for weekdays
-  //   this.daysData = this.ds.getdataForWeek(
-  //     this.weekDays[0],
-  //     this.route.snapshot.paramMap.get('sectie')
-  //   )
-  //   .subscribe((el: Array<any>)=> {
-  //     el = el.map(x=> {
-  //       if (x[0]){
-  //         return JSON.parse(x[0])
-  //       } else {
-  //         return []
-  //       }
-  //     })
-  //     // Convert actions to ac_models
-  //     let ac_models = []
-  //     let days = []
-  //     for (let day of el) {
-  //       day.map(x => {
-  //         days.push(_.cloneDeep(x))
-  //         delete x.cantitate
-  //         delete x.date                
-  //         return x
-  //       })
-  //       ac_models.push(day)
-  //     }
-
-  //     // Flatten arrays ac_models and this.daysData
-  //     ac_models = ac_models.reduce((acc, cur) => {
-  //       return acc.concat(cur)
-  //     })
-  //     // Eliminate duplicate objects
-  //     let unique_ac_models = _.uniqWith(ac_models, _.isEqual)
-
-  //     this.daysData = days
-  //     this.daysModelData = unique_ac_models
-  //     this.buildRows()
-  //   })
-    
-  // }
 
   getCantitateByDate(daysData, date, tip, produs, um, material) {
     /*
@@ -181,6 +198,10 @@ export class SecIrisWeekComponent implements OnInit {
         schimb_3: 0,
       }}
     }
+  }
+
+  rowsByTip(tip) {
+    return this.rows.filter(el => el[1] === tip)
   }
 
   // Calendar functions

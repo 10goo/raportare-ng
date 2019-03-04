@@ -75,7 +75,8 @@ export class SecIrisDetailComponent implements OnInit {
   }
 
   recalculate(ac): void {
-    console.log('changed: ' + ac.cantitate.schimb_1)
+    // console.log('changed: ' + ac.cantitate.schimb_1)
+    return null
   }
 
   goBack() {

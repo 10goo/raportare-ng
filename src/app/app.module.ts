@@ -18,6 +18,7 @@ import { EditTableComponent } from './edit-table/edit-table.component';
 import { HeaderComponent } from './header/header.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
+import { RfrshComponent } from './rfrsh/rfrsh.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LoginComponent } from './login/login.component';
     EditTableComponent,
     HeaderComponent,
     PageNotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    RfrshComponent
   ],
   imports: [
     BrowserModule,

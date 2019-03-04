@@ -45,10 +45,13 @@
       <th>TOTAL</th>
     </tr>
   </thead>
-  <tbody>
-    <tr *ngFor="let row of rows$ | async">
+  <tbody *ngFor="let tip of unique_tip">
+    <tr>
+
+      <td>{{tip}}</td>
+    </tr>
+    <tr *ngFor="let row of rowsByTip(tip)">
       <!-- <td *ngFor="let td of row">{{td}}</td> -->
-      <td>{{row[1]}}</td>
       <td>{{row[2]}}</td>
       <td>{{row[3]}}</td>
       <td>{{row[4]}}</td>
@@ -90,3 +93,5 @@
     </tr>
   </tbody>
 </table>
+
+

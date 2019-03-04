@@ -33,8 +33,14 @@ export class HeaderComponent implements OnInit {
       })
     })
   }
-  
+
   logOut(): void {
     this.auth.logOut()
+  }
+
+  sectieNav(route) {
+    // Routing hack to force refresh component
+    this.router.navigateByUrl('/RefrshComponent', {skipLocationChange: true}).then(()=>
+        this.router.navigate([route]))
   }
 }
