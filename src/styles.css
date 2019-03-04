@@ -30,8 +30,8 @@ th, td {
 }
 
 .container {
-    max-width: 100%;
-    width: 100%;
+    /* max-width: 100%;
+    width: 100%; */
     padding: 1em;
 }
 
@@ -96,6 +96,8 @@ input {
         padding: 1.6cm; 
         font-size: 1em;
     }
+
+    
 
     .noprint, button{
         display: none;

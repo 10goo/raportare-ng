@@ -8,16 +8,16 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  isLoggedIn = true
-  canEdit = true
-  isAdmin = true
-  level = 3
-  sectii = ['1','2','3','4','5','6','7','8','9']
-  // isLoggedIn = false
-  // canEdit = false
-  // isAdmin = false
-  // level = 0
-  // sectii = []
+  // isLoggedIn = true
+  // canEdit = true
+  // isAdmin = true
+  // level = 3
+  // sectii = ['1','2','3','4','5','6','7','8','9']
+  isLoggedIn = false
+  canEdit = false
+  isAdmin = false
+  level = 0
+  sectii = []
 
   constructor(private http: HttpClient, private router: Router) { }
 

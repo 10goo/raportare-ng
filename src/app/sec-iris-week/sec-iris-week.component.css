@@ -1,2 +1,51 @@
 @import url(../../assets/css/normalize.css);
 @import url(../../assets/css/skeleton.css);
+
+td, th {
+    text-align: center;
+    border: 0.5px solid black;
+}
+
+table {
+    overflow-x: scroll;
+    display: block;
+    /* transform: scale(.7); */
+
+}
+
+.cantitate, .cantitate-header > th {
+    width: 6rem;
+}
+
+.bold-n-space {
+    font-weight: 700;
+    margin-right: 1rem;
+}
+
+@media print {
+    /* Margins */
+    @page { margin: 0; }
+    body { 
+        padding: 1.6cm; 
+        font-size: 1em;
+    }
+
+    table {
+        transform: scale(.6);
+        transform-origin: top left;
+        overflow-x: none;
+        display: table;
+    }
+
+    .noprint, button{
+        display: none;
+    }
+
+    input[type="email"], input[type="number"], input[type="search"], 
+    input[type="text"], input[type="tel"], input[type="url"], 
+    input[type="password"], textarea, select {
+        border: none;
+        margin: 0;
+    }
+    
+  }
