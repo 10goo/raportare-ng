@@ -47,6 +47,7 @@ export class SecIrisWeekComponent implements OnInit {
     */
    // Build rows with data for all the days in week
     let weekRows = []
+    let randamentRows = []
     daysModelData.map(el => {
       let res = []
       // Create row
@@ -69,10 +70,37 @@ export class SecIrisWeekComponent implements OnInit {
       for (let i = 8; res[i]; i+=4) {tt += res[i] }
       res = [...res, Math.round(ts1*100)/100, Math.round(ts2*100)/100, Math.round(ts3*100)/100, Math.round(tt*100)/100]
       
+      el.r_in ? res.push(el.r_in) : res.push(0)
+      el.r_out ? res.push(el.r_out) : res.push(0)
+
       weekRows.push(res)
+
+    })
+    randamentRows = _.cloneDeep(weekRows).filter(el=> {
+      // console.log(el[34] != 0)
+      return el[33] != 0
+    }).map(el2 => { 
+      el2[1] = 'Randament'
+      return el2
     })
 
-    return weekRows
+    randamentRows.map(el => {
+      randamentRows.reduce((acc, val) => {
+        if (val[33] == el[33]) {
+          for (let i=5; i<val.length; i++) {}
+        }
+      })
+
+
+      // Remove elements which are already added
+      // _.remove(randamentRows, (x) => {
+      //   return x[33] == el[33]
+      // })
+    })
+
+    console.log(randamentRows) 
+
+    return [...weekRows, ...randamentRows]
     // _.sortBy(weekRows, [0, 1]) // Sort result array by tip(primary criteria) and produs(secondary criteria)  
   }
   

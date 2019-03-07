@@ -9,6 +9,8 @@
       <th>Material</th>
       <th>Coeficient</th>
       <th>Merged</th>
+      <th>Randament In</th>
+      <th>Randament Out</th>
       <th> </th>
     </tr>
   </thead>
@@ -45,6 +47,12 @@
           >
         </td>
         <td>
+          <input type="number" [(ngModel)]="ac.r_in">
+        </td>
+        <td>
+          <input type="number" [(ngModel)]="ac.r_out">
+        </td>
+        <td>
           <button mat-raised-button color="secondary" (click)="removeAc(i)">-</button>
         </td>
       </tr>
@@ -76,6 +84,12 @@
         <input type="checkbox" 
         [checked]="newActionTemplate.merged" 
         (change)="newActionTemplate.merged = !newActionTemplate.merged">
+      </td>
+      <td>
+        <input type="number" [(ngModel)]="newActionTemplate.r_in">
+      </td>
+      <td>
+        <input type="number" [(ngModel)]="newActionTemplate.r_out">
       </td>
       <td>
         <button mat-raised-button color="primary" (click)="addAc()">+</button>

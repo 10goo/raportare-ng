@@ -25,70 +25,70 @@ export class GetDataService {
     return this.data
   }
 
-  generateMockWeek() {
-    let array_text = `[
-      [{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":500,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}}],
-      [{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"proppmatt\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":500,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}}],
-      [{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"listerby\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":500,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}}],
-      [{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"sniglar\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":500,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}}],
-      [{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"norsjon\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":500,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}}],
-      [{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"brattvag\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":500,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}}]
-    ]`
-    let obs = Observable.create((observer) => {
-      observer.next(array_text)
-    })
-    return obs.pipe(map((el: string) => {
-      return JSON.parse(el.replace(/\\/g, ""))
-    }))
-  }
+  // generateMockWeek() {
+  //   let array_text = `[
+  //     [{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":500,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}}],
+  //     [{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"proppmatt\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":500,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}}],
+  //     [{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"listerby\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":500,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}}],
+  //     [{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"sniglar\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":500,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}}],
+  //     [{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"norsjon\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":500,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}}],
+  //     [{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"brattvag\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":500,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}},{\"data\":\"25-02-2019\",\"tip\":\"intrari\",\"produse\":\"burfjord\",\"material\":\"stejar\",\"um\":\"mc\",\"cantitate\":{\"schimb_1\":100,\"schimb_2\":200,\"schimb_3\":300}}]
+  //   ]`
+  //   let obs = Observable.create((observer) => {
+  //     observer.next(array_text)
+  //   })
+  //   return obs.pipe(map((el: string) => {
+  //     return JSON.parse(el.replace(/\\/g, ""))
+  //   }))
+  // }
 
-  generateMock(date, s: number) {
-    /*
-      Returns a mock array of actions for prototyping
+  // generateMock(date, s: number) {
+  //   /*
+  //     Returns a mock array of actions for prototyping
       
-      Input: 
-        date: date string formatted like 'DD-MM-YYY'
-        s: number of actions in the array
-      Output: Array with elements of type Action
-    */
-    let td = {
-      tip: ['intrari', 'presare', 'finisare', 'ambalare', 'predare'],
-      produse: ['proppmatt', 'alvaret', 'torsklint', 'listerby', 'burfjord'],
-      um: ['mc', 'ml', 'mp', 'buc', 'set'],
-      material: ['stejar', 'fag', 'rasinos', 'altele'],
-    }
-    let parsed_json = []
-    for (let i=0;i<s; i++) {
-      let t = td.tip[Math.floor(Math.random()*td.tip.length)]
-      let p = td.produse[Math.floor(Math.random()*td.produse.length)]
-      let m = td.material[Math.floor(Math.random()*td.material.length)]
-      let u = td.um[Math.floor(Math.random()*td.um.length)]
-      let ac: Action = {
-        data: date,
-        tip: t,
-        produse: p,
-        material: m,
-        um: 'mc',
-        cantitate: {
-          schimb_1: 100,
-          schimb_2: 200,
-          schimb_3: 300,
-        },
-        coeficient: 0.5,
-        merged: false
-      }
-    parsed_json.push(ac)
-  }
-  // Sort by sort object from getListOrder()
-  let order = this.getListOrder()
-  let ordered_json = parsed_json.map(el => {
-    el['order'] = order[el.tip]
-    return el
-  })
-  ordered_json.sort((a,b) => {return (a.order >= b.order) ? 1 : - 1})
+  //     Input: 
+  //       date: date string formatted like 'DD-MM-YYY'
+  //       s: number of actions in the array
+  //     Output: Array with elements of type Action
+  //   */
+  //   let td = {
+  //     tip: ['intrari', 'presare', 'finisare', 'ambalare', 'predare'],
+  //     produse: ['proppmatt', 'alvaret', 'torsklint', 'listerby', 'burfjord'],
+  //     um: ['mc', 'ml', 'mp', 'buc', 'set'],
+  //     material: ['stejar', 'fag', 'rasinos', 'altele'],
+  //   }
+  //   let parsed_json = []
+  //   for (let i=0;i<s; i++) {
+  //     let t = td.tip[Math.floor(Math.random()*td.tip.length)]
+  //     let p = td.produse[Math.floor(Math.random()*td.produse.length)]
+  //     let m = td.material[Math.floor(Math.random()*td.material.length)]
+  //     let u = td.um[Math.floor(Math.random()*td.um.length)]
+  //     let ac: Action = {
+  //       data: date,
+  //       tip: t,
+  //       produse: p,
+  //       material: m,
+  //       um: 'mc',
+  //       cantitate: {
+  //         schimb_1: 100,
+  //         schimb_2: 200,
+  //         schimb_3: 300,
+  //       },
+  //       coeficient: 0.5,
+  //       merged: false
+  //     }
+  //   parsed_json.push(ac)
+  // }
+  // // Sort by sort object from getListOrder()
+  // let order = this.getListOrder()
+  // let ordered_json = parsed_json.map(el => {
+  //   el['order'] = order[el.tip]
+  //   return el
+  // })
+  // ordered_json.sort((a,b) => {return (a.order >= b.order) ? 1 : - 1})
 
-  return ordered_json
-  }
+  // return ordered_json
+  // }
 
   getDate(): string {
     return this.date;

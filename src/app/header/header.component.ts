@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   sectii
   
   
-  constructor(private location: Location, private router: Router, private ds: GetDataService, private auth: AuthService) {
+  constructor(private location: Location, private router: Router, private ds: GetDataService, public auth: AuthService) {
   }
   
   ngOnInit() {

@@ -20,7 +20,7 @@ export class SecIrisDetailComponent implements OnInit {
     private ds: GetDataService, 
     private route: ActivatedRoute, 
     private location: Location, 
-    private auth: AuthService,
+    public auth: AuthService,
     private router: Router
     ) { }
 
