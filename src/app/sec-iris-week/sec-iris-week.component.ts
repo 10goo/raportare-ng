@@ -86,8 +86,12 @@ export class SecIrisWeekComponent implements OnInit {
 
     randamentRows.map(el => {
       randamentRows.reduce((acc, val) => {
+        console.log(el[33], val[33])
         if (val[33] == el[33]) {
-          for (let i=5; i<val.length; i++) {}
+          for (let i=5; i<val.length; i++) {
+            acc[i] += val[i]
+          }
+          return acc
         }
       })
 
