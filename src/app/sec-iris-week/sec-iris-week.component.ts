@@ -77,35 +77,24 @@ export class SecIrisWeekComponent implements OnInit {
 
     })
     randamentRows = _.cloneDeep(weekRows).filter(el=> {
-      // console.log(el[34] != 0)
-      return el[33] != 0
+      return el[34] != 0
     }).map(el2 => { 
       el2[1] = 'Randament'
       return el2
     })
 
     randamentRows.map(el => {
-      randamentRows.reduce((acc, val) => {
-        console.log(el[33], val[33])
-        if (val[33] == el[33]) {
-          for (let i=5; i<val.length; i++) {
-            acc[i] += val[i]
-          }
-          return acc
-        }
-      })
-
-
-      // Remove elements which are already added
-      // _.remove(randamentRows, (x) => {
-      //   return x[33] == el[33]
+      console.log('el', el)
+      
+      // arr.filter(el => el[0]==0).reduce((acc, val)=> {
+      //   return acc.map((el, i) => {
+      //     return el + val[i]
+      //     })
       // })
+      
     })
 
-    console.log(randamentRows) 
-
     return [...weekRows, ...randamentRows]
-    // _.sortBy(weekRows, [0, 1]) // Sort result array by tip(primary criteria) and produs(secondary criteria)  
   }
   
   // findRows() {

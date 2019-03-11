@@ -6,11 +6,15 @@ td, th {
     border: 0.5px solid black;
 }
 
+/* td:empty {
+    border-bottom: none;
+} */
+
+
 table {
     overflow-x: scroll;
     display: block;
     /* transform: scale(.7); */
-
 }
 
 .cantitate, .cantitate-header > th {
@@ -31,7 +35,7 @@ table {
     }
 
     table {
-        transform: scale(.6);
+        transform: scale(.5);
         transform-origin: top left;
         overflow-x: none;
         display: table;
