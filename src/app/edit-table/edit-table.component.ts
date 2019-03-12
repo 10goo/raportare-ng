@@ -71,7 +71,7 @@ export class EditTableComponent implements OnInit {
   }
 
   test() {
-    console.log(this.newActionTemplate)
+    console.log(this.currentTemplates)
   }
 
   // DRAG AND DROP FUNCTIONS

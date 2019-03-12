@@ -9,8 +9,9 @@
       <th>Material</th>
       <th>Coeficient</th>
       <th>Merged</th>
-      <th>Randament In</th>
-      <th>Randament Out</th>
+      <th>R. In</th>
+      <th>R. Out</th>
+      <th>Total</th>
       <th> </th>
     </tr>
   </thead>
@@ -53,6 +54,9 @@
           <input type="number" [(ngModel)]="ac.r_out">
         </td>
         <td>
+          <input type="number" [(ngModel)]="ac.total">
+        </td>
+        <td>
           <button mat-raised-button color="secondary" (click)="removeAc(i)">-</button>
         </td>
       </tr>
@@ -90,6 +94,9 @@
       </td>
       <td>
         <input type="number" [(ngModel)]="newActionTemplate.r_out">
+      </td>
+      <td>
+        <input type="number" [(ngModel)]="newActionTemplate.total">
       </td>
       <td>
         <button mat-raised-button color="primary" (click)="addAc()">+</button>
