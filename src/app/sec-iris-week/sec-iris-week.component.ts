@@ -83,7 +83,7 @@ export class SecIrisWeekComponent implements OnInit {
     let randamentRowsIn = _.cloneDeep(weekRows).filter(el=> {
       return (el[33] != 0)
     }).map(el2 => { 
-      el2[1] = 'Randament'
+      el2[1] = 'Randament ' + el2[1]
       return el2.map((x, i) => {
         if(i>4 && i<33) {
           return x*el2[35]
@@ -96,7 +96,7 @@ export class SecIrisWeekComponent implements OnInit {
     let randamentRowsOut = _.cloneDeep(weekRows).filter(el=> {
       return (el[34] != 0)
     }).map(el2 => { 
-      el2[1] = 'Randament'
+      el2[1] = 'Randament (' + el2[1] + ')'
       return el2.map((x, i) => {
         if(i>4 && i<33) {
           return x*el2[35]
@@ -183,7 +183,7 @@ export class SecIrisWeekComponent implements OnInit {
     let totalRows = _.cloneDeep(weekRows).filter(el=> {
       return (el[36])
     }).map(el2 => { 
-      el2[1] = 'Total'
+      el2[1] = 'Total ' + el2[1]
       el2[2] = ''
       el2[3] = 'mc'
       return el2.map((x, i) => {
