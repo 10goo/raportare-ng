@@ -72,9 +72,9 @@ export class SecIrisWeekComponent implements OnInit {
       
       el.r_in ? res.push(el.r_in) : res.push(0)
       el.r_out ? res.push(el.r_out) : res.push(0)
-      // console.log('coef', el.coeficient)
       res.push(el.coeficient)
       res.push(el.total)
+      console.log(typeof(el.total))
 
       weekRows.push(res)
     })
@@ -166,17 +166,18 @@ export class SecIrisWeekComponent implements OnInit {
           return y
         }
       })
-    }).map(el => {
-      el[5] = el[8]
-      el[9] = el[12]
-      el[13] = el[16]
-      el[17] = el[20]
-      el[21] = el[24]
-      el[25] = el[28]
-      el[29] = el[32]
-
-      return el
     })
+    // .map(el => {
+    //   el[5] = el[8]
+    //   el[9] = el[12]
+    //   el[13] = el[16]
+    //   el[17] = el[20]
+    //   el[21] = el[24]
+    //   el[25] = el[28]
+    //   el[29] = el[32]
+
+    //   return el
+    // })
 
     // Calculate total
     let totalRows = _.cloneDeep(weekRows).filter(el=> {
@@ -205,9 +206,7 @@ export class SecIrisWeekComponent implements OnInit {
 
     totalRows = Object.values(orderedTotal)
     totalRows = totalRows.map(el => {
-      // console.log(el)
       return el.reduce((acc, val) => {
-        // console.log(acc)
         return val.map((x,i) => {
           if (i>4 && i<33){
             return Math.floor(((acc[i] || 0) + x)*100)/100 // || 0 for the first iteration
@@ -216,17 +215,18 @@ export class SecIrisWeekComponent implements OnInit {
           }
         })
       }, [])
-    }).map(el => {
-      el[5] = el[8]
-      el[9] = el[12]
-      el[13] = el[16]
-      el[17] = el[20]
-      el[21] = el[24]
-      el[25] = el[28]
-      el[29] = el[32]
-      
-      return el
     })
+    // .map(el => {
+    //   el[5] = el[8]
+    //   el[9] = el[12]
+    //   el[13] = el[16]
+    //   el[17] = el[20]
+    //   el[21] = el[24]
+    //   el[25] = el[28]
+    //   el[29] = el[32]
+      
+    //   return el
+    // })
     
     console.log(totalRows)
     return [...weekRows, ...totalRows,...randamentRows]
