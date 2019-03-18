@@ -64,17 +64,18 @@ export class SecIrisWeekComponent implements OnInit {
       }
       // Calculating week total
       let ts1= 0, ts2 = 0, ts3 = 0, tt = 0
-      for (let i = 5; res[i]; i+=4) {ts1 += res[i] }
-      for (let i = 6; res[i]; i+=4) {ts2 += res[i] }
-      for (let i = 7; res[i]; i+=4) {ts3 += res[i] }
-      for (let i = 8; res[i]; i+=4) {tt += res[i] }
-      res = [...res, Math.round(ts1*100)/100, Math.round(ts2*100)/100, Math.round(ts3*100)/100, Math.round(tt*100)/100]
+      console.log('res', res)
+      for (let i = 5; i<res.length; i+=4) {ts1 += res[i] }
+      for (let i = 6; i<res.length; i+=4) {ts2 += res[i] }
+      for (let i = 7; i<res.length; i+=4) {ts3 += res[i] }
+      for (let i = 8; i<res.length; i+=4) {tt += res[i] }
+      // res = [...res, Math.round(ts1*100)/100, Math.round(ts2*100)/100, Math.round(ts3*100)/100, Math.round(tt*100)/100]
+      res.push(Math.round(ts1*100)/100, Math.round(ts2*100)/100, Math.round(ts3*100)/100, Math.round(tt*100)/100)
       
       el.r_in ? res.push(el.r_in) : res.push(0)
       el.r_out ? res.push(el.r_out) : res.push(0)
       res.push(el.coeficient)
       res.push(el.total)
-      console.log(typeof(el.total))
 
       weekRows.push(res)
     })
@@ -167,17 +168,6 @@ export class SecIrisWeekComponent implements OnInit {
         }
       })
     })
-    // .map(el => {
-    //   el[5] = el[8]
-    //   el[9] = el[12]
-    //   el[13] = el[16]
-    //   el[17] = el[20]
-    //   el[21] = el[24]
-    //   el[25] = el[28]
-    //   el[29] = el[32]
-
-    //   return el
-    // })
 
     // Calculate total
     let totalRows = _.cloneDeep(weekRows).filter(el=> {
@@ -216,19 +206,7 @@ export class SecIrisWeekComponent implements OnInit {
         })
       }, [])
     })
-    // .map(el => {
-    //   el[5] = el[8]
-    //   el[9] = el[12]
-    //   el[13] = el[16]
-    //   el[17] = el[20]
-    //   el[21] = el[24]
-    //   el[25] = el[28]
-    //   el[29] = el[32]
-      
-    //   return el
-    // })
-    
-    console.log(totalRows)
+
     return [...weekRows, ...totalRows,...randamentRows]
   }
   
