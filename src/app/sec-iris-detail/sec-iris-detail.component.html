@@ -2,7 +2,7 @@
 <h5 id="h5">Raport productie: {{date}}</h5>
 
 <button mat-raised-button color="secondary" routerLink="/edit-table/{{sectie}}" *ngIf="auth.isAdmin">Editare</button>
-<table class="u-full-width" *ngIf="actions && unique_tip">
+<table class="u-full-width" *ngIf="actions && unique_tip && !auth.isAdmin">
   <thead>
     <tr>
       <th rowspan="2"> </th>
@@ -59,24 +59,90 @@
           <td class="center">{{roundTwoDecimals(ac.cantitate.schimb_1 + ac.cantitate.schimb_2 + ac.cantitate.schimb_3)}}</td>
     </tr>
   </tbody>
-<!-- Fejleszteni
-  <tbody>
-    <tr>
-      <th>Randament</th>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-      <td>%</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-  </tbody>
-   -->
 </table>
-<button mat-raised-button (click)="saveTable()" color="primary" *ngIf="auth.canEdit">Save</button>
-<button class="cancel-btn" mat-raised-button (click)="goBack()" color="secondary">Cancel</button>
+<table class="u-full-width" *ngIf="actions && unique_tip && auth.isAdmin">
+  <thead>
+    <tr>
+      <th rowspan="2"> </th>
+      <th rowspan="2">Produs</th>
+      <th rowspan="2">UM</th>
+      <th rowspan="2" class="center">Material</th>
+      <th colspan="3" class="center">Cantitati</th>
+      <th rowspan="2" class="center">Merged</th>
+      <th rowspan="2" class="center">R_in</th>
+      <th rowspan="2" class="center">R_out</th>
+      <th rowspan="2" class="center">Total</th>
+      <th rowspan="2" class="center"> 
+      </th>
+    </tr>
+    <tr>
+      <th class="center">I</th>
+      <th class="center">II</th>
+      <th class="center">III</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let tip of unique_tip">
+    <tr>
+      <th>{{tip | titlecase}}</th>
+    </tr>
+    <tr *ngFor="let ac of getAcByTip(tip)">
+      <td>{{ac.produse}}</td>
+      <td>{{ac.um}}</td>
+      <td class="center">{{ac.material}}</td>
+      <td *ngIf="!ac.merged"  class="center">
+        <input 
+          type="number" 
+          [(ngModel)]="ac.cantitate.schimb_1"
+          (change)="recalculate(ac)"
+        >
+      </td>
+      <td *ngIf="!ac.merged"  class="center">
+          <input 
+            type="number" 
+            [(ngModel)]="ac.cantitate.schimb_2"
+            (change)="recalculate(ac)"
+          >
+        </td>
+        <td *ngIf="!ac.merged"  class="center">
+            <input 
+              type="number" 
+              [(ngModel)]="ac.cantitate.schimb_3"
+              (change)="recalculate(ac)"
+            >
+          </td>
+          <td *ngIf="ac.merged" colspan="3" class="center">
+            <input 
+              class="merged"
+              type="number" 
+              [(ngModel)]="ac.cantitate.schimb_1"
+              (change)="recalculate(ac)"
+            >
+          </td>
+          <td class="center">
+            <input 
+              type="text" 
+              [(ngModel)]="ac.merged"
+            ></td>
+          <td class="center">
+            <input 
+              type="text" 
+              [(ngModel)]="ac.r_in"
+            ></td>
+          <td class="center">
+            <input 
+              type="text" 
+              [(ngModel)]="ac.r_out"
+            ></td>
+          <td class="center">
+            <input 
+              type="text" 
+              [(ngModel)]="ac.total"
+            ></td>
+            <td>
+              <button mat-raised-button (click)="removeAc({tip: tip, um: ac.um, material: ac.material, produse: ac.produse})" color="secondary">-</button>
+            </td>
+        </tr>
+  </tbody>
+</table>
+<button mat-raised-button (click)="saveTable('iris-week/'+sectie)" color="primary" *ngIf="auth.canEdit">Save</button>
+<button class="cancel-btn" mat-raised-button (click)="goBack('iris-week/'+sectie)" color="secondary">Cancel</button>

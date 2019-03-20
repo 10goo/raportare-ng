@@ -3,6 +3,7 @@ import { GetDataService } from '../get-data.service'
 import { ActivatedRoute, Router } from '@angular/router'
 import {Location} from '@angular/common';
 import { AuthService } from '../auth.service';
+import * as _ from 'lodash'
 
 @Component({
   selector: 'app-sec-iris-detail',
@@ -65,9 +66,9 @@ export class SecIrisDetailComponent implements OnInit {
     return Math.round(x*100)/100
   }
 
-  saveTable(): void {    
+  saveTable(route): void {    
     this.ds.saveTable(this.sectie, this.date, this.actions)
-    this.location.back()
+    this.goBack(route)
   }
 
   getAcByTip(tip: string) {
@@ -75,13 +76,19 @@ export class SecIrisDetailComponent implements OnInit {
   }
 
   recalculate(ac): void {
-    // console.log('changed: ' + ac.cantitate.schimb_1)
     return null
   }
 
-  goBack() {
-    // this.location.back()
-    this.router.navigate(['iris-week/' + this.sectie])
+  goBack(route) {
+    // Routing hack to force refresh component
+    this.router.navigateByUrl('/RefrshComponent', {skipLocationChange: true}).then(()=>
+        this.router.navigate([route]))
+}
+  removeAc(obj){
+    let res = this.actions.filter(el => {
+      let res = (el.tip == obj.tip) && (el.produse==obj.produse) && (el.material==obj.material) && (el.um==obj.um)
+      return !res
+    })
+    this.actions = res
   }
-
 }
