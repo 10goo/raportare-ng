@@ -23,6 +23,7 @@ body {
 table {
     line-height: normal;  
     overflow-x: scroll;
+    table-layout: fixed;
 }
 
 th, td {
