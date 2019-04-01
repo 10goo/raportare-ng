@@ -6,7 +6,7 @@
     <form class="example-form">
       
         <mat-form-field class="full-width">
-        <input matInput placeholder="Username/Email" [(ngModel)]="username" type="text" name="username" required>
+        <input matInput placeholder="Username/Email" autofocus (keydown.enter)="login()" [(ngModel)]="username" type="text" name="username" required>
         </mat-form-field>
       <br/>
         <mat-form-field class="full-width">
