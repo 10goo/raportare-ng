@@ -125,8 +125,10 @@ export class SecIrisWeekComponent implements OnInit {
       }
     }
 
-    randamentRowsIn = Object.values(orderedRIn)
-    randamentRowsOut = Object.values(orderedROut)
+    // randamentRowsIn = Object.values(orderedRIn)
+    // randamentRowsOut = Object.values(orderedROut)
+    randamentRowsIn = _.values(orderedRIn)
+    randamentRowsOut = _.values(orderedROut)
     
     randamentRowsIn = randamentRowsIn.map((el: Array<any>) => {
       return el.reduce((acc, val)=> {
@@ -194,8 +196,9 @@ export class SecIrisWeekComponent implements OnInit {
       }
     }
 
-    totalRows = Object.values(orderedTotal)
-    totalRows = totalRows.map(el => {
+      // totalRows = Object.values(orderedTotal)
+      totalRows = _.values(orderedTotal)    
+      totalRows = totalRows.map(el => {
       return el.reduce((acc, val) => {
         return val.map((x,i) => {
           if (i>4 && i<33){
